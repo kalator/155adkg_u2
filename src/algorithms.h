@@ -27,6 +27,7 @@ public:
     static QPolygonF minimalRectangle(QPolygonF &poly_ch);
     static void rotateByAngle(std::vector<QPointF> &points, double angle);
     static void rotateByAngle(QPolygonF &points, double angle);
+    static double getDistance(QPointF &a, QPointF &b);
 };
 
 #endif // ALGORITHMS_H

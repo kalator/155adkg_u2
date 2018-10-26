@@ -2,7 +2,7 @@
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
-    this->points.clear();
+
 }
 
 void Draw::paintEvent(QPaintEvent *e)
@@ -35,6 +35,12 @@ void Draw::mousePressEvent(QMouseEvent *e)
     QPointF clicked_point(e->x(), e->y());
     points.push_back(clicked_point);
     repaint();
+}
+
+void Draw::setCH(QPolygonF ch)
+{
+    this->rect.clear();
+    this->ch = ch;
 }
 
 void Draw::clearCanvas()

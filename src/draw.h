@@ -20,7 +20,7 @@ public:
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *e);
     QPolygonF getPolygon() {return ch;}
-    void setCH(QPolygonF ch) {this->ch = ch;}
+    void setCH(QPolygonF ch);
     std::vector<QPointF> getPoints() {return points;}
     void setPoints(std::vector<QPointF> &random_points) {this->points = random_points;}
     void setRect() {this->rect = Algorithms::minimalRectangle(this->ch);}

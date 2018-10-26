@@ -48,6 +48,8 @@ double Algorithms::getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPo
 
 QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
 {
+    const double EPS = 10e-6;
+
     QPolygonF poly_ch;
 
     //find pivot q
@@ -60,6 +62,10 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     //create pjj
     QPointF pjj(s.x(), q.y());
     QPointF pj = q;
+    if(fabs(pj.x()-pjj.x()) < EPS)
+    {
+        pjj.setX(pjj.x() + 100);
+    }
 
     //add pivot to convex hull
     poly_ch.push_back(q);
@@ -69,6 +75,7 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     {
         int i_max = -1;
         double fi_max = 0;
+        double min_dist = std::numeric_limits<double>::max();
 
         //Find pi = arg max angle (pi, pj, pjj)
         for(unsigned int i = 0; i<points.size(); i++)
@@ -81,6 +88,17 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
             {
                 i_max = i;
                 fi_max = fi;
+            }
+
+            else if(fabs(fi-fi_max) < EPS)
+            {
+                double dist = getDistance(pj, points[i]);
+                if(min_dist > dist)
+                {
+                    min_dist = dist;
+                    i_max = i;
+                    fi_max = fi;
+                }
             }
         }
 
@@ -243,4 +261,9 @@ void Algorithms::rotateByAngle(QPolygonF &points, double angle)
         points[i].setX(cos(angle) * temp_point.x() + sin(angle) * temp_point.y());
         points[i].setY(-sin(angle) * temp_point.x() + cos(angle) * temp_point.y());
     }
+}
+
+double Algorithms::getDistance(QPointF &a, QPointF &b)
+{
+    return sqrt((a.x()-b.x())*(a.x()-b.x())+(a.y()-b.y())*(a.y()-b.y()));
 }
