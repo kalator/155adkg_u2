@@ -4,13 +4,16 @@
 #include <QWidget>
 #include <QtGui>
 
+#include "algorithms.h"
+
 class Draw : public QWidget
 {
     Q_OBJECT
 
 private:
-    std::vector<QPointF> points; //body
-    QPolygonF ch; //kovexni obalka
+    std::vector<QPointF> points; //points
+    QPolygonF ch; //convex hull
+    QPolygonF rect; //minimal rectangle
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -20,6 +23,7 @@ public:
     void setCH(QPolygonF ch) {this->ch = ch;}
     std::vector<QPointF> getPoints() {return points;}
     void setPoints(std::vector<QPointF> &random_points) {this->points = random_points;}
+    void setRect() {this->rect = Algorithms::minimalRectangle(this->ch);}
     void clearCanvas();
 
 signals:

@@ -162,3 +162,86 @@ std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_co
     }
     return random_points;
 }
+
+QPolygonF Algorithms::minimalRectangle(QPolygonF &poly_ch)
+{
+    std::vector<QPointF> points;
+    for(int i=0; i<poly_ch.size()-1; i++)
+    {
+        points.push_back(poly_ch[i]);
+    }
+
+    QPointF p1, p2, p0; //p1 - actual point, p2 - next point, p0 - previous point
+
+    double x_min_rect, x_max_rect, y_min_rect, y_max_rect;
+    double min_volume = std::numeric_limits<double>::max();
+    double angle_min;
+    int n = points.size();
+    for(int i=0; i<n; i++)
+    {
+        p1 = points[i%n];
+        p2 = points[(i+1)%n];
+        p0.setX(p1.x()-100);
+        p0.setY(p1.y());
+
+        double angle = getTwoVectorsAngle(p1, p0, p1, p2);
+        rotateByAngle(points, angle);
+
+        std::vector<QPointF> points_sort = points; //we do not want to sort points
+
+        std::sort(points_sort.begin(), points_sort.end(), SortByXAsc());
+        double x_min = points_sort[0].x();
+        double x_max = points_sort[n-1].x();
+
+        std::sort(points_sort.begin(), points_sort.end(), SortByYAsc());
+        double y_min = points_sort[0].y();
+        double y_max = points_sort[n-1].y();
+
+        double volume = (x_max-x_min)*(y_max-y_min);
+        if(min_volume > volume)
+        {
+            x_max_rect = x_max;
+            x_min_rect = x_min;
+            y_max_rect = y_max;
+            y_min_rect = y_min;
+            min_volume = volume;
+            angle_min = angle;
+            qDebug() << "min volume: " << min_volume;
+        }
+
+        //rotate back
+        rotateByAngle(points, -angle);
+    }
+
+    QPolygonF minimal_rectangle;
+    minimal_rectangle.push_back(QPointF(x_min_rect, y_min_rect));
+    minimal_rectangle.push_back(QPointF(x_min_rect, y_max_rect));
+    minimal_rectangle.push_back(QPointF(x_max_rect, y_max_rect));
+    minimal_rectangle.push_back(QPointF(x_max_rect, y_min_rect));
+
+    rotateByAngle(minimal_rectangle, -angle_min);
+
+    return minimal_rectangle;
+}
+
+void Algorithms::rotateByAngle(std::vector<QPointF> &points, double angle)
+{
+    angle *= (M_PI/180);
+    for(unsigned int i = 0; i < points.size(); i++)
+    {
+        QPointF temp_point = points[i];
+        points[i].setX(cos(angle) * temp_point.x() + sin(angle) * temp_point.y());
+        points[i].setY(-sin(angle) * temp_point.x() + cos(angle) * temp_point.y());
+    }
+}
+
+void Algorithms::rotateByAngle(QPolygonF &points, double angle)
+{
+    angle *= (M_PI/180);
+    for(int i = 0; i < points.size(); i++)
+    {
+        QPointF temp_point = points[i];
+        points[i].setX(cos(angle) * temp_point.x() + sin(angle) * temp_point.y());
+        points[i].setY(-sin(angle) * temp_point.x() + cos(angle) * temp_point.y());
+    }
+}

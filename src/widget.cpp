@@ -15,7 +15,7 @@ Widget::~Widget()
 
 void Widget::on_createCHButton_clicked()
 {
-    if(ui->canvas->getPoints().empty())
+    if(ui->canvas->getPoints().size() < 3)
         return;
     std::vector<QPointF> points = ui->canvas->getPoints();
     QPolygonF ch = Algorithms::jarvisScanCH(points);
@@ -36,4 +36,13 @@ void Widget::on_generateButton_clicked()
 void Widget::on_clearButton_clicked()
 {
     ui->canvas->clearCanvas();
+}
+
+void Widget::on_createRectButton_clicked()
+{
+    QPolygonF poly_ch = ui->canvas->getPolygon();
+    if(poly_ch.empty())
+        return;
+    ui->canvas->setRect();
+    repaint();
 }

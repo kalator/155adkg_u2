@@ -151,19 +151,6 @@
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -191,12 +178,26 @@
      </item>
      <item>
       <spacer name="verticalSpacer_2">
-       <property name="minimumSize">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>197</height>
+         <height>40</height>
         </size>
        </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createRectButton">
+       <property name="text">
+        <string>Create min. rect.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_5">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>

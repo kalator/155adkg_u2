@@ -23,6 +23,8 @@ private slots:
 
     void on_clearButton_clicked();
 
+    void on_createRectButton_clicked();
+
 private:
     Ui::Widget *ui;
 };

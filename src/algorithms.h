@@ -24,6 +24,9 @@ public:
     static double getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4);
     static QPolygonF jarvisScanCH(std::vector<QPointF> &points);
     static std::vector<QPointF> generatePoints(QSize &canvas_size, int point_count, std::string shape);
+    static QPolygonF minimalRectangle(QPolygonF &poly_ch);
+    static void rotateByAngle(std::vector<QPointF> &points, double angle);
+    static void rotateByAngle(QPolygonF &points, double angle);
 };
 
 #endif // ALGORITHMS_H
