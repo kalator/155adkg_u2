@@ -206,7 +206,6 @@ QPolygonF Algorithms::minimalRectangle(QPolygonF &poly_ch)
             y_min_rect = y_min;
             min_volume = volume;
             angle_min = angle;
-            qDebug() << "min volume: " << min_volume;
         }
 
         //rotate back
