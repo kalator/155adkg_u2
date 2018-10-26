@@ -4,6 +4,7 @@
 #include <QtGui>
 #include <string>
 #include <cmath>
+#include <ctime>
 
 #include "sortbyxasc.h"
 #include "sortbyyasc.h"
