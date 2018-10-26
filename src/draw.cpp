@@ -7,7 +7,7 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 
 void Draw::paintEvent(QPaintEvent *e)
 {
-    QPen pen_poly(Qt::red, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen_poly(Qt::red, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_point(Qt::black, 1);
     //QPen pen_point_ch(Qt::red, 3);
 
@@ -21,7 +21,7 @@ void Draw::paintEvent(QPaintEvent *e)
     painter.setPen(pen_point);
     for(unsigned int i = 0; i < points.size(); i++)
     {
-        painter.drawEllipse(points[i].x()-1, points[i].y()-1, 2, 2);
+        painter.drawPoint(points[i]);
     }
 }
 

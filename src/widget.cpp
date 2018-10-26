@@ -25,8 +25,9 @@ void Widget::on_createCHButton_clicked()
 
 void Widget::on_generateButton_clicked()
 {
+    ui->canvas->clearCanvas();
     QSize canvas_size = ui->canvas->size();
-    std::string shape = ui->shapeBox->currentText().toUtf8().constData();;
+    std::string shape = ui->shapeBox->currentText().toUtf8().constData();
     std::vector<QPointF> random_points = Algorithms::generatePoints(canvas_size, ui->pointCount->text().toInt(), shape);
     ui->canvas->setPoints(random_points);
     repaint();

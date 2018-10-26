@@ -112,7 +112,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_co
         srand(time(NULL));
         while(point_count--)
         {
-            random_points.push_back(QPointF(rand()%w, rand()%h));
+            random_points.push_back(QPointF(rand()%(w-10), rand()%(h-10)));
         }
     }
 
@@ -120,7 +120,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_co
     else if(shape == "Circle")
     {
         int perimeter;
-        w > h ? perimeter = h/2 : perimeter = w/2;
+        w > h ? perimeter = h/2 - 10 : perimeter = w/2 - 10;
         for(int i = 0; i < point_count; i++)
         {
             double x = w/2.0 + perimeter*sin(i*2*M_PI/point_count);
@@ -134,8 +134,8 @@ std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_co
     {
         for(int i = 0; i < point_count; i++)
         {
-            double x = w/2.0 + w/2 * sin(i*2*M_PI/point_count);
-            double y = h/2.0 + h/2 * cos(i*2*M_PI/point_count);
+            double x = w/2.0 + (w-10)/2.0 * sin(i*2*M_PI/point_count);
+            double y = h/2.0 + (h-10)/2.0 * cos(i*2*M_PI/point_count);
             random_points.push_back(QPointF(x,y));
         }
     }
@@ -144,7 +144,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_co
     else if(shape == "Square")
     {
         int side_length;
-        w > h ? side_length = h-5 : side_length = w-5;
+        w > h ? side_length = h-10 : side_length = w-10;
 
         //firstly add 4 corner points
         random_points.push_back(QPointF(w/2.0-side_length/2.0,h/2.0-side_length/2.0));
