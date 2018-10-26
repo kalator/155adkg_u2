@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QtGui>
 #include "algorithms.h"
 
 namespace Ui {
@@ -22,6 +23,8 @@ private slots:
     void on_generateButton_clicked();
 
     void on_clearButton_clicked();
+
+    void onNextSent(int i);
 
 private:
     Ui::Widget *ui;
