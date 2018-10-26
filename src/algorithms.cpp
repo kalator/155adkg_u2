@@ -82,8 +82,6 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
                 i_max = i;
                 fi_max = fi;
             }
-
-            emit next(i*points.size()/100);
         }
 
         //add the next point to convex hull

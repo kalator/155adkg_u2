@@ -37,8 +37,3 @@ void Widget::on_clearButton_clicked()
 {
     ui->canvas->clearCanvas();
 }
-
-void Widget::onNextSent(int i)
-{
-    ui->
-}
