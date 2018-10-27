@@ -115,6 +115,89 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     return poly_ch;
 }
 
+QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
+{
+    const double EPS = 10e-6;
+
+    //find point with lowest x coordinate
+    std::sort(points.begin(), points.end(), SortByXAsc());
+    QPointF s = points[0];
+
+    //find pivot q
+    std::sort(points.begin(), points.end(), SortByYAsc());
+    QPointF q = points[0]; //sorted
+
+    //point that together with point q creates parallel with x-axis
+    s.setY(q.y());
+
+    //reduce points to (0,0)
+    for(unsigned int i = 1; i<points.size(); i++)
+    {
+        points[i].setX(points[i].x()-q.x());
+        points[i].setY(points[i].y()-q.y());
+    }
+
+    //sort by angle (and by distance from q if angle is the same)
+    std::sort(points.begin()+1, points.end(), SortByAngleAsc());
+
+    //go through sorted points and rule out those that have same angle as some other and are closer to q
+    //save cleared points to vector
+    //unreduce coordinates
+
+    std::vector<QPointF> points_cleared;
+    points_cleared.push_back(q);
+
+    points[1].setX(points[1].x()+q.x());
+    points[1].setY(points[1].y()+q.y());
+
+    for(unsigned int i = 1; i < points.size()-1; i++)
+    {
+        points[i+1].setX(points[i+1].x()+q.x());
+        points[i+1].setY(points[i+1].y()+q.y());
+
+        if(fabs(getTwoVectorsAngle(q, s, q, points[i])-getTwoVectorsAngle(q, s, q, points[i+1])) > EPS)
+        {
+            qDebug() << "Adding point to clared";
+            points_cleared.push_back(points[i]);
+        }
+        if((i == points.size()-2))
+        {
+            qDebug() << "KOKOK";
+            points_cleared.push_back(points[i+1]);
+        }
+    }
+    qDebug() << "Points cleared " << points_cleared.size();
+
+
+    std::vector<QPointF> poly_ch;
+    poly_ch.push_back(points_cleared[0]);
+    poly_ch.push_back(points_cleared[1]);
+
+    for(int i = 2; i < points_cleared.size(); i++)
+    {
+        qDebug() << i;
+        bool notConvex = true;
+        while(notConvex)
+        {
+            if(getPointLinePosition(poly_ch[poly_ch.size()-1], poly_ch[poly_ch.size()-2], points_cleared[i]) == LEFT)
+                    poly_ch.pop_back();
+            else
+                notConvex = false;
+        }
+        poly_ch.push_back(points_cleared[i]);
+    }
+
+    qDebug() << "poly len " << poly_ch.size();
+
+    QPolygonF poly;
+    for(int i = 0; i < poly_ch.size(); i++)
+    {
+        poly.push_back(poly_ch[i]);
+    }
+    return poly;
+}
+
+
 std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_count, std::string shape)
 {
     //SS stands for side_strip - thickness of space on sides, that should be empty (to avoid point/polygon drawing, that is not visible)
@@ -190,6 +273,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_co
 
 void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectangle, QLineF &direction, bool compute_dir_line)
 {
+    qDebug() << "minimal rectangle points " << poly_ch.size();
     //vector of points to copy poly_ch points into, so poly_ch will not be affected by following operations
     std::vector<QPointF> points;
     for(int i=0; i<poly_ch.size()-1; i++)

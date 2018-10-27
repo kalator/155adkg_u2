@@ -30,7 +30,8 @@ SOURCES += \
     algorithms.cpp \
     sortbyxasc.cpp \
     sortbyyasc.cpp \
-    helpdialog.cpp
+    helpdialog.cpp \
+    sortbyangleasc.cpp
 
 HEADERS += \
         widget.h \
@@ -38,7 +39,8 @@ HEADERS += \
     algorithms.h \
     sortbyxasc.h \
     sortbyyasc.h \
-    helpdialog.h
+    helpdialog.h \
+    sortbyangleasc.h
 
 FORMS += \
         widget.ui \

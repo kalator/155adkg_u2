@@ -20,8 +20,12 @@ void Widget::on_createCHButton_clicked()
         return;
     std::vector<QPointF> points = ui->canvas->getPoints();\
 
+    QPolygonF ch;
     //choose algorithm
-    QPolygonF ch = Algorithms::jarvisScanCH(points);
+    if(ui->methodCombo->currentText() == "Jarvis Scan")
+        ch = Algorithms::jarvisScanCH(points);
+    else if(ui->methodCombo->currentText() == "Graham Scan")
+        ch = Algorithms::grahamScanCH(points);
     ui->canvas->setCH(ch);
     repaint();
 }
