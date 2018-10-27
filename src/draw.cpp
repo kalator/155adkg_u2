@@ -46,6 +46,7 @@ void Draw::mousePressEvent(QMouseEvent *e)
 void Draw::setCH(QPolygonF ch)
 {
     this->rect.clear();
+    this->ch.clear();
     this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
     this->ch = ch;
 }

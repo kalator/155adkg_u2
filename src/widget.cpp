@@ -51,6 +51,10 @@ void Widget::on_clearButton_clicked()
 void Widget::on_createRectButton_clicked()
 {
     QPolygonF poly_ch = ui->canvas->getPolygon();
+    for(int i=0;i<poly_ch.size();i++)
+    {
+        qDebug() << poly_ch[i];
+    }
 
     //check if there is any convex hull computed
     if(poly_ch.empty())

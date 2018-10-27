@@ -5,8 +5,11 @@
 
 class SortByAngleAsc
 {
+private:
+    QPointF q;
+
 public:
-    SortByAngleAsc();
+    SortByAngleAsc(QPointF &q);
 
     double getAngle(QPointF &p);
     double getDistance(QPointF &p);
@@ -15,7 +18,7 @@ public:
     {
         if(fabs(getAngle(p1)-getAngle(p2)) < 10e-6)
         {
-            if(getDistance(p1) > getDistance(p2))
+            if(getDistance(p1) < getDistance(p2))
                 return 1;
 
             else
