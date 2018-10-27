@@ -14,6 +14,7 @@ private:
     std::vector<QPointF> points; //points
     QPolygonF ch; //convex hull
     QPolygonF rect; //minimal rectangle
+    QLineF direction; //main direction
 
 public:
     explicit Draw(QWidget *parent = nullptr);
@@ -23,7 +24,7 @@ public:
     void setCH(QPolygonF ch);
     std::vector<QPointF> getPoints() {return points;}
     void setPoints(std::vector<QPointF> &random_points) {this->points = random_points;}
-    void setRect() {this->rect = Algorithms::minimalRectangle(this->ch);}
+    void setRect(bool draw_dir_line);
     void clearCanvas();
 
 signals:

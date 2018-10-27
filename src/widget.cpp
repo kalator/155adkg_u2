@@ -43,6 +43,6 @@ void Widget::on_createRectButton_clicked()
     QPolygonF poly_ch = ui->canvas->getPolygon();
     if(poly_ch.empty())
         return;
-    ui->canvas->setRect();
+    ui->canvas->setRect(ui->checkBox->isChecked());
     repaint();
 }

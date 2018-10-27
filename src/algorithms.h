@@ -24,9 +24,10 @@ public:
     static double getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4);
     static QPolygonF jarvisScanCH(std::vector<QPointF> &points);
     static std::vector<QPointF> generatePoints(QSize &canvas_size, int point_count, std::string shape);
-    static QPolygonF minimalRectangle(QPolygonF &poly_ch);
+    static void minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectangle, QLineF &direction, bool compute_dir_line);
     static void rotateByAngle(std::vector<QPointF> &points, double angle);
     static void rotateByAngle(QPolygonF &points, double angle);
+    static void rotateByAngle(QLineF &points, double angle);
     static double getDistance(QPointF &a, QPointF &b);
 };
 
