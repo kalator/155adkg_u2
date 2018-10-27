@@ -242,7 +242,7 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
     if(compute_dir_line)
     {
         //get main direction
-        if((x_max_rect-x_min_rect) < (y_max_rect-y_min_rect))
+        if((x_max_rect-x_min_rect) > (y_max_rect-y_min_rect))
         {
             direction.setP1(QPointF(x_min_rect, 0.5*(y_max_rect+y_min_rect)));
             direction.setP2(QPointF(x_max_rect, 0.5*(y_max_rect+y_min_rect)));
