@@ -2,7 +2,7 @@
 
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
-    //put direction of main side outside of visible canvas
+    //put main direction line outside of visible canvas
     this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
 }
 
@@ -53,7 +53,10 @@ void Draw::setCH(QPolygonF ch)
 void Draw::setRect(bool draw_dir_line)
 {
     rect.clear();
+
     this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
+
+    //compute minimal rectangle and optionaly main direction line
     Algorithms::minimalRectangle(this->ch, this->rect, this->direction, draw_dir_line);
 }
 
