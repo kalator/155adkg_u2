@@ -29,14 +29,17 @@ SOURCES += \
     draw.cpp \
     algorithms.cpp \
     sortbyxasc.cpp \
-    sortbyyasc.cpp
+    sortbyyasc.cpp \
+    helpdialog.cpp
 
 HEADERS += \
         widget.h \
     draw.h \
     algorithms.h \
     sortbyxasc.h \
-    sortbyyasc.h
+    sortbyyasc.h \
+    helpdialog.h
 
 FORMS += \
-        widget.ui
+        widget.ui \
+    helpdialog.ui

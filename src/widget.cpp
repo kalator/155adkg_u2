@@ -46,3 +46,10 @@ void Widget::on_createRectButton_clicked()
     ui->canvas->setRect(ui->checkBox->isChecked());
     repaint();
 }
+
+void Widget::on_helpButton_clicked()
+{
+    HelpDialog help_dialog;
+    help_dialog.setModal(true);
+    help_dialog.exec();
+}

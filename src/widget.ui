@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Widget</string>
+   <string>Convex Hull Creator 0.1</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
@@ -39,53 +39,14 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QPushButton" name="helpButton">
        <property name="text">
-        <string>Method</string>
+        <string>Help!</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="Line" name="line_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="methodCombo">
-       <item>
-        <property name="text">
-         <string>Jarvis Scan</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Quick Hull</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Sweep Line</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="Line" name="line_2">
+      <widget class="Line" name="line_8">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -93,13 +54,16 @@
      </item>
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generate selected number of points lying on chosen geometrical shape.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>Point generator</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="Line" name="line">
+      <widget class="Line" name="line_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -158,9 +122,78 @@
       </widget>
      </item>
      <item>
-      <widget class="Line" name="line_3">
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="Line" name="line_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Compute and create convex hull using one of the methods.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>Create convex hull</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Using method:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="methodCombo">
+       <item>
+        <property name="text">
+         <string>Jarvis Scan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Quick Hull</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sweep Line</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createCHButton">
+       <property name="minimumSize">
+        <size>
+         <width>99</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Go!</string>
        </property>
       </widget>
      </item>
@@ -178,42 +211,43 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="createCHButton">
-       <property name="minimumSize">
-        <size>
-         <width>99</width>
-         <height>23</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Create CH</string>
+      <widget class="Line" name="line_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+      <widget class="QLabel" name="label_6">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Create minimal bounding rectangle. To compute main direction line, leave the &amp;quot;Draw dir. line&amp;quot; checkbox ticked.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
+       <property name="text">
+        <string>Create minimal</string>
        </property>
-      </spacer>
+      </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="createRectButton">
+      <widget class="QLabel" name="label_7">
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Create minimal bounding rectangle. To compute main direction line, leave the &amp;quot;Draw dir. line&amp;quot; checkbox ticked.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
-        <string>Create min. rect.</string>
+        <string>bounding rectangle</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QCheckBox" name="checkBox">
        <property name="text">
-        <string>Draw direct. line</string>
+        <string>Draw dir. line</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -221,17 +255,11 @@
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+      <widget class="QPushButton" name="createRectButton">
+       <property name="text">
+        <string>Go!</string>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
+      </widget>
      </item>
      <item>
       <spacer name="verticalSpacer_5">
@@ -269,7 +297,7 @@
         </size>
        </property>
        <property name="text">
-        <string>Clear</string>
+        <string>Clear!</string>
        </property>
       </widget>
      </item>
