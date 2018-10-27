@@ -111,19 +111,21 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
         pj = points[i_max];
     }
     while(!(pj == q));
-
     return poly_ch;
 }
 
 QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 {
+    QPolygonF poly;
+
     const double EPS = 10e-6;
     //find pivot q
     std::sort(points.begin(), points.end(), SortByYAsc());
     QPointF q = points[0]; //sorted
 
     std::vector<QPointF> points_reduced;
-    for(int i =1; i < points.size(); i++)
+
+    for(unsigned int i =1; i < points.size(); i++)
     {
         points_reduced.push_back(points[i]);
     }
@@ -166,7 +168,7 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     poly_ch.push_back(points_cleared[0]);
     poly_ch.push_back(points_cleared[1]);
 
-    for(int i = 2; i < points_cleared.size(); i++)
+    for(unsigned int i = 2; i < points_cleared.size(); i++)
     {
         bool notConvex = true;
         while(notConvex)
@@ -179,13 +181,13 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
         poly_ch.push_back(points_cleared[i]);
     }
 
-    QPolygonF poly;
-    for(int i = 0; i < poly_ch.size(); i++)
+    for(unsigned int i = 0; i < poly_ch.size(); i++)
     {
         poly.push_back(poly_ch[i]);
     }
 
-    qDebug() << poly.size();
+    poly.push_back(q);
+
     return poly;
 }
 
