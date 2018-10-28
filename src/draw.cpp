@@ -48,7 +48,25 @@ void Draw::setCH(std::string &selected_algorithm)
     if(this->points.size() < 3)
         return;
 
-    this->rect.clear();
+    //check if there are at least 3 points with different coordinates
+    int count = 0;
+    QPointF p = points[0];
+    for(int i = 0; i < this->points.size(); i++)
+    {
+        if((fabs(p.x() - points[i].x()) > 10e-6) && (fabs(p.y() - points[i].y()) > 10e-6))
+        {
+            p = points[i];
+            count++;
+        }
+        if(count == 2)
+            break;
+    }
+    if(count < 2)
+    {
+        return;
+    }
+
+        this->rect.clear();
     this->ch.clear();
     this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
 
@@ -75,10 +93,6 @@ void Draw::setCH(std::string &selected_algorithm)
         }
     }
 
-    for(int i = 0; i < ch.size(); i++)
-    {
-        qDebug() << ch[i];
-    }
     repaint();
 }
 
