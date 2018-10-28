@@ -58,6 +58,27 @@ void Draw::setCH(std::string &selected_algorithm)
     else if(selected_algorithm == "Graham Scan")
         this->ch = Algorithms::grahamScanCH(this->points);
 
+    //strictly convex hull
+    int n = this->ch.size();
+    for(int i = 0; i<n; i++)
+    {
+        double nx = - this->ch[(i+1)%n].y() + this->ch[i%n].y();
+        double ny = this->ch[(i+1)%n].x() - this->ch[i%n].x();
+
+        double c = -nx*this->ch[i%n].x() - ny*this->ch[i%n].y();
+
+        if(fabs(nx*this->ch[(i+2)%n].x()+ny*this->ch[(i+2)%n].y()+c) < 10e-6)
+        {
+            this->ch.erase(this->ch.begin()+(i%n+1));
+            n--;
+            i--;
+        }
+    }
+
+    for(int i = 0; i < ch.size(); i++)
+    {
+        qDebug() << ch[i];
+    }
     repaint();
 }
 

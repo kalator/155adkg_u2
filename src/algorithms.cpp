@@ -228,7 +228,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
     //Square
     else if(shape == "Square")
     {
-        int side_length;
+        double side_length;
         w > h ? side_length = h-SS : side_length = w-SS;
 
         //firstly add 4 corner points
