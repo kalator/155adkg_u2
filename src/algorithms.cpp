@@ -67,9 +67,6 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
         pjj.setX(pjj.x() + 100);
     }
 
-    //add pivot to convex hull
-    //poly_ch.push_back(q);
-
     //loop
     do
     {
@@ -104,13 +101,14 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
         }
 
         //add the next point to convex hull
-        poly_ch.push_back(points[i_max]);
+        poly_ch.push_front(points[i_max]);
 
         //assign convex hull vertices
         pjj = pj;
         pj = points[i_max];
     }
     while(!(pj == q));
+
     return poly_ch;
 }
 
@@ -178,15 +176,14 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     return poly_ch;
 }
 
-
 std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_count, std::string shape)
 {
     //SS stands for side_strip - thickness of space on sides, that should be empty (to avoid point/polygon drawing, that is not visible)
     const int SS = 10;
 
     //get canvas height/width
-    int h = canvas_size.height();
-    int w = canvas_size.width();
+    double h = canvas_size.height();
+    double w = canvas_size.width();
 
     //create vector of new points
     std::vector<QPointF> random_points;
@@ -277,7 +274,6 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
         //compute angle to rotate with
         double angle = getTwoVectorsAngle(p1, p0, p1, p2);
         rotateByAngle(points, angle);
-        qDebug() << "angle " << angle;
 
         //copy points into new container for sorting in order to keep original sequence of poly points
         std::vector<QPointF> points_sort = points;
@@ -335,8 +331,6 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
         //rotate main direction line back (coordinates were rotated from loop)
         rotateByAngle(direction, -angle_min);
     }
-    qDebug() << "Minimal rectangle " << minimal_rectangle[0] << " " << minimal_rectangle[1] << " " << minimal_rectangle[2] << " " << minimal_rectangle[3];
-    qDebug() << "Volume: " << min_volume;
 }
 
 void Algorithms::rotateByAngle(std::vector<QPointF> &points, double angle)
