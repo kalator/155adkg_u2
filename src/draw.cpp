@@ -3,7 +3,7 @@
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
     //put main direction line outside of visible canvas
-    this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
+    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
 }
 
 void Draw::paintEvent(QPaintEvent *e)
@@ -43,30 +43,49 @@ void Draw::mousePressEvent(QMouseEvent *e)
     repaint();
 }
 
-void Draw::setCH(QPolygonF ch)
-{
+void Draw::setCH(std::string &selected_algorithm)
+{   
+    if(this->points.size() < 3)
+        return;
+
     this->rect.clear();
     this->ch.clear();
-    this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
-    this->ch = ch;
+    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+
+    //choose algorithm
+    if(selected_algorithm == "Jarvis Scan")
+        this->ch = Algorithms::jarvisScanCH(this->points);
+    else if(selected_algorithm == "Graham Scan")
+        this->ch = Algorithms::grahamScanCH(this->points);
+
+    repaint();
 }
 
 void Draw::setRect(bool draw_dir_line)
 {
     rect.clear();
+    if(this->ch.isEmpty())
+        return;
 
-    this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
+    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
 
     //compute minimal rectangle and optionaly main direction line
     Algorithms::minimalRectangle(this->ch, this->rect, this->direction, draw_dir_line);
+    repaint();
 }
 
+void Draw::setPoints(QSizeF &canvas_size, int count, std::string &shape)
+{
+    clearCanvas();
+    this->points = Algorithms::generatePoints(canvas_size, count, shape);
+    repaint();
+}
 
 void Draw::clearCanvas()
 {
     this->ch.clear();
     this->rect.clear();
     this->points.clear();
-    this->direction.setPoints(QPointF(-5,-5), QPointF(-5,-5));
+    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
     repaint();
 }

@@ -68,7 +68,7 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     }
 
     //add pivot to convex hull
-    poly_ch.push_back(q);
+    //poly_ch.push_back(q);
 
     //loop
     do
@@ -119,19 +119,13 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     QPolygonF poly;
 
     const double EPS = 10e-6;
-    //find pivot q
-    std::sort(points.begin(), points.end(), SortByYAsc());
-    QPointF q = points[0]; //sorted
-
-    std::vector<QPointF> points_reduced;
-
-    for(unsigned int i =1; i < points.size(); i++)
-    {
-        points_reduced.push_back(points[i]);
-    }
 
     std::sort(points.begin(), points.end(), SortByXAsc());
     QPointF s = points[0];
+
+    //find pivot q
+    std::sort(points.begin(), points.end(), SortByYAsc());
+    QPointF q = points[0]; //sorted
 
     //point that together with point q creates a parallel with x-axis
     s.setY(q.y());
@@ -141,8 +135,10 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
         s.setX(s.x()+100);
     }
 
-    //sort by angle (and by distance from q if angle is the same)
-    std::sort(points_reduced.begin(), points_reduced.end(), SortByAngleAsc(q));
+    //sort by angle (and by distance from q if angle is the same), leave q on the first place
+    points.erase(points.begin());
+    std::sort(points.begin(), points.end(), SortByAngleAsc(q));
+    points.insert(points.begin(),q);
 
     //go through sorted points and rule out those that have same angle as some other and are closer to q
     //save cleared points to vector
@@ -150,21 +146,19 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     std::vector<QPointF> points_cleared;
     points_cleared.push_back(q);
 
-    points_reduced.insert(points_reduced.begin(), q);
-
     for(unsigned int i = 1; i < points.size()-1; i++)
     {
-        if(fabs(getTwoVectorsAngle(q, s, q, points_reduced[i])-getTwoVectorsAngle(q, s, q, points_reduced[i+1])) > 0)
+        if(fabs(getTwoVectorsAngle(q, s, q, points[i])-getTwoVectorsAngle(q, s, q, points[i+1])) > 0)
         {
-            points_cleared.push_back(points_reduced[i]);
+            points_cleared.push_back(points[i]);
         }
         if(i == points.size()-2)
         {
-            points_cleared.push_back(points_reduced[i+1]);
+            points_cleared.push_back(points[i+1]);
         }
     }
 
-    std::vector<QPointF> poly_ch;
+    QPolygonF poly_ch;
     poly_ch.push_back(points_cleared[0]);
     poly_ch.push_back(points_cleared[1]);
 
@@ -181,18 +175,11 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
         poly_ch.push_back(points_cleared[i]);
     }
 
-    for(unsigned int i = 0; i < poly_ch.size(); i++)
-    {
-        poly.push_back(poly_ch[i]);
-    }
-
-    poly.push_back(q);
-
-    return poly;
+    return poly_ch;
 }
 
 
-std::vector<QPointF> Algorithms::generatePoints(QSize &canvas_size, int point_count, std::string shape)
+std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_count, std::string shape)
 {
     //SS stands for side_strip - thickness of space on sides, that should be empty (to avoid point/polygon drawing, that is not visible)
     const int SS = 10;
@@ -269,7 +256,7 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
 {
     //vector of points to copy poly_ch points into, so poly_ch will not be affected by following operations
     std::vector<QPointF> points;
-    for(int i=0; i<poly_ch.size()-1; i++)
+    for(int i=0; i<poly_ch.size(); i++)
     {
         points.push_back(poly_ch[i]);
     }
@@ -290,6 +277,7 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
         //compute angle to rotate with
         double angle = getTwoVectorsAngle(p1, p0, p1, p2);
         rotateByAngle(points, angle);
+        qDebug() << "angle " << angle;
 
         //copy points into new container for sorting in order to keep original sequence of poly points
         std::vector<QPointF> points_sort = points;
@@ -347,6 +335,8 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
         //rotate main direction line back (coordinates were rotated from loop)
         rotateByAngle(direction, -angle_min);
     }
+    qDebug() << "Minimal rectangle " << minimal_rectangle[0] << " " << minimal_rectangle[1] << " " << minimal_rectangle[2] << " " << minimal_rectangle[3];
+    qDebug() << "Volume: " << min_volume;
 }
 
 void Algorithms::rotateByAngle(std::vector<QPointF> &points, double angle)
