@@ -8,13 +8,20 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 
 void Draw::paintEvent(QPaintEvent *e)
 {
-    QPen pen_poly(Qt::red, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen_rect(Qt::green, 6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen_direction(Qt::blue, 4);
-    QPen pen_point(Qt::black, 1);
+    QPen pen_poly(QColor(255, 0, 0, 127), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen_rect(QColor(0, 255, 0, 127), 6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen_direction(QColor(0, 0, 255, 127), 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen_point(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     //QPen pen_point_ch(Qt::red, 3);
 
     QPainter painter(this);
+
+    //Draw points
+    painter.setPen(pen_point);
+    for(unsigned int i = 0; i < points.size(); i++)
+    {
+        painter.drawPoint(points[i]);
+    }
 
     //Draw minimal rectangle
     painter.setPen(pen_rect);
@@ -28,12 +35,7 @@ void Draw::paintEvent(QPaintEvent *e)
     painter.setPen(pen_direction);
     painter.drawLine(this->direction);
 
-    //Draw points
-    painter.setPen(pen_point);
-    for(unsigned int i = 0; i < points.size(); i++)
-    {
-        painter.drawEllipse(points[i].x()-2, points[i].y()-2,4,4);
-    }
+
 }
 
 void Draw::mousePressEvent(QMouseEvent *e)

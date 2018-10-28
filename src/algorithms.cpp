@@ -116,7 +116,7 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 {
     QPolygonF poly;
 
-    const double EPS = 10e-6;
+    const double EPS = 10e-12;
 
     std::sort(points.begin(), points.end(), SortByXAsc());
     QPointF s = points[0];
