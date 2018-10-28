@@ -47,6 +47,8 @@ void Draw::mousePressEvent(QMouseEvent *e)
 
 void Draw::setCH(std::string &selected_algorithm)
 {   
+    const double EPS = 10e-6;
+
     if(this->points.size() < 3)
         return;
 
@@ -55,7 +57,7 @@ void Draw::setCH(std::string &selected_algorithm)
     QPointF p = points[0];
     for(int i = 0; i < this->points.size(); i++)
     {
-        if((fabs(p.x() - points[i].x()) > 10e-6) && (fabs(p.y() - points[i].y()) > 10e-6))
+        if((fabs(p.x() - points[i].x()) > EPS) && (fabs(p.y() - points[i].y()) > EPS))
         {
             p = points[i];
             count++;

@@ -62,10 +62,6 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     //create pjj
     QPointF pjj(s.x(), q.y());
     QPointF pj = q;
-    if(fabs(pj.x()-pjj.x()) < EPS)
-    {
-        pjj.setX(pjj.x() + 100);
-    }
 
     //loop
     do
@@ -116,7 +112,7 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 {
     QPolygonF poly;
 
-    const double EPS = 10e-12;
+    const double EPS = 10e-6;
 
     std::sort(points.begin(), points.end(), SortByXAsc());
     QPointF s = points[0];
@@ -128,11 +124,6 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     //point that together with point q creates a parallel with x-axis
     s.setY(q.y());
 
-    if(fabs(q.x()-s.x())< EPS)
-    {
-        s.setX(s.x()+100);
-    }
-
     //sort by angle (and by distance from q if angle is the same), leave q on the first place
     points.erase(points.begin());
     std::sort(points.begin(), points.end(), SortByAngleAsc(q));
@@ -140,17 +131,16 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 
     //go through sorted points and rule out those that have same angle as some other and are closer to q
     //save cleared points to vector
-    //unreduce coordinates
     std::vector<QPointF> points_cleared;
     points_cleared.push_back(q);
 
     for(unsigned int i = 1; i < points.size()-1; i++)
     {
-        if(fabs(getTwoVectorsAngle(q, s, q, points[i])-getTwoVectorsAngle(q, s, q, points[i+1])) > 0)
+        if(fabs(getTwoVectorsAngle(q, s, q, points[i])-getTwoVectorsAngle(q, s, q, points[i+1])) > EPS)
         {
             points_cleared.push_back(points[i]);
         }
-        if(i == points.size()-2)
+        if(i == points.size()-2) //last looop
         {
             points_cleared.push_back(points[i+1]);
         }
