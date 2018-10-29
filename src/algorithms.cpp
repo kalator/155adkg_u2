@@ -54,8 +54,9 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
 
     //find pivot q
     std::sort(points.begin(), points.end(), SortByYAsc());
-    QPointF q = points[0]; //sorted
+    QPointF q = points[0];
 
+    //point to make parallel with x-axis
     std::sort(points.begin(), points.end(), SortByXAsc());
     QPointF s = points[0];
 
@@ -63,6 +64,7 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     QPointF pjj(s.x(), q.y());
     QPointF pj = q;
 
+    //NOT pushing pivot into poly_ch, for it would be there twice (last loop will add it)
     //loop
     do
     {
@@ -110,10 +112,9 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
 
 QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 {
-    QPolygonF poly;
-
     const double EPS = 10e-6;
 
+    //point that together with point q creates a parallel with x-axis
     std::sort(points.begin(), points.end(), SortByXAsc());
     QPointF s = points[0];
 
@@ -121,19 +122,17 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     std::sort(points.begin(), points.end(), SortByYAsc());
     QPointF q = points[0]; //sorted
 
-    //point that together with point q creates a parallel with x-axis
     s.setY(q.y());
 
     //sort by angle (and by distance from q if angle is the same), leave q on the first place
     points.erase(points.begin());
     std::sort(points.begin(), points.end(), SortByAngleAsc(q));
-    points.insert(points.begin(),q);
+    points.insert(points.begin(), q);
 
     //go through sorted points and rule out those that have same angle as some other and are closer to q
     //save cleared points to vector
     std::vector<QPointF> points_cleared;
     points_cleared.push_back(q);
-
     for(unsigned int i = 1; i < points.size()-1; i++)
     {
         if(fabs(getTwoVectorsAngle(q, s, q, points[i])-getTwoVectorsAngle(q, s, q, points[i+1])) > EPS)
@@ -146,13 +145,17 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
         }
     }
 
+    //create output polygon, add first two points (first one is pivot)
     QPolygonF poly_ch;
     poly_ch.push_back(points_cleared[0]);
     poly_ch.push_back(points_cleared[1]);
 
+    //filling up poly_ch
     for(unsigned int i = 2; i < points_cleared.size(); i++)
     {
         bool notConvex = true;
+        //go backwards and check for points that are in left plain of line between predecestor of last point
+        //added to poly_ch and point that should be added
         while(notConvex)
         {
             if(getPointLinePosition(poly_ch[poly_ch.size()-1], poly_ch[poly_ch.size()-2], points_cleared[i]) == LEFT)
