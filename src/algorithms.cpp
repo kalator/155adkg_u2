@@ -60,6 +60,9 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     std::sort(points.begin(), points.end(), SortByXAsc());
     QPointF s = points[0];
 
+    if(fabs(s.x()-q.x())< EPS)
+        s.setX(s.x()+100);
+
     //create pjj
     QPointF pjj(s.x(), q.y());
     QPointF pj = q;
@@ -122,6 +125,8 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     std::sort(points.begin(), points.end(), SortByYAsc());
     QPointF q = points[0]; //sorted
 
+    if(fabs(s.x()-q.x())< EPS)
+        s.setX(s.x()+100);
     s.setY(q.y());
 
     //sort by angle (and by distance from q if angle is the same), leave q on the first place

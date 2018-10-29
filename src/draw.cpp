@@ -4,6 +4,9 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 {
     //put main direction line outside of visible canvas
     this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+    this->points.push_back(QPointF(20,30));
+    this->points.push_back(QPointF(20,40));
+    this->points.push_back(QPointF(20,35));
 }
 
 void Draw::paintEvent(QPaintEvent *e)
@@ -55,7 +58,7 @@ void Draw::setCH(std::string &selected_algorithm)
     //check if there are at least 3 points with different coordinates
     int count = 0;
     QPointF p = points[0];
-    for(int i = 0; i < this->points.size(); i++)
+    for(unsigned int i = 0; i < this->points.size(); i++)
     {
         if((fabs(p.x() - points[i].x()) > EPS) && (fabs(p.y() - points[i].y()) > EPS))
         {
@@ -70,7 +73,7 @@ void Draw::setCH(std::string &selected_algorithm)
         return;
     }
 
-        this->rect.clear();
+    this->rect.clear();
     this->ch.clear();
     this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
 
