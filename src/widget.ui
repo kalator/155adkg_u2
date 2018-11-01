@@ -112,32 +112,17 @@
        </item>
        <item>
         <property name="text">
-         <string>Full circle</string>
+         <string>Circle</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Empty circle</string>
+         <string>Ellipse</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Full ellipse</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Empty ellipse</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Full square</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Empty square</string>
+         <string>Square</string>
         </property>
        </item>
       </widget>

@@ -304,7 +304,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         }
     }
 
-    //Grid squared
+    //Grid
     else if(shape == "Grid")
     {
        int count_on_row = sqrt(point_count);
@@ -323,8 +323,8 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
 
     }
 
-    //Empty circle
-    else if(shape == "Empty circle")
+    //Circle
+    else if(shape == "Circle")
     {
         int perimeter;
         w > h ? perimeter = h/2 - SS : perimeter = w/2 - SS;
@@ -336,25 +336,8 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         }
     }
 
-    //Full circle
-    else if(shape == "Full circle")
-    {
-        srand(time(NULL));
-        double perimeter;
-        w > h ? perimeter = h/2 - SS : perimeter = w/2 - SS;
-
-        while(point_count--)
-        {
-            double rand_perimeter = static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(perimeter)));
-            double rand_fi = static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(2*M_PI)));
-            double x = w/2.0 + rand_perimeter*sin(rand_fi);
-            double y = h/2.0 + rand_perimeter*cos(rand_fi);
-            random_points.push_back(QPointF(x,y));
-        }
-    }
-
-    //Empty ellipse
-    else if(shape == "Empty ellipse")
+    //Ellipse
+    else if(shape == "Ellipse")
     {
         for(int i = 0; i < point_count; i++)
         {
@@ -364,23 +347,8 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         }
     }
 
-    //Full ellipse
-    else if(shape == "Full ellipse")
-    {
-        srand(time(NULL));
-        while(point_count--)
-        {
-            double rand_a = static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/((w-SS)/2.0)));
-            double rand_b = static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/((h-SS)/2.0)));
-            double rand_fi = static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(2*M_PI)));
-            double x = w/2.0 + rand_a * sin(rand_fi);
-            double y = h/2.0 + rand_b * cos(rand_fi);
-            random_points.push_back(QPointF(x,y));
-        }
-    }
-
-    //Empty square
-    else if(shape == "Empty square")
+    //Square
+    else if(shape == "Square")
     {
         double side_length;
         w > h ? side_length = h-SS : side_length = w-SS;
@@ -401,19 +369,6 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         }
     }
 
-    //Full square
-    else if(shape == "Full square")
-    {
-        double side_length;
-        w > h ? side_length = h-SS : side_length = w-SS;
-
-        while(point_count--)
-        {
-            double rand_x = w/2-side_length/2 + static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(side_length)));
-            double rand_y = h/2-side_length/2 + static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(side_length)));
-            random_points.push_back(QPointF(rand_x, rand_y));
-        }
-    }
     return random_points;
 }
 
