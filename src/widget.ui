@@ -102,22 +102,42 @@
        </property>
        <item>
         <property name="text">
-         <string>Star-shape</string>
+         <string>Random</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Circle</string>
+         <string>Grid</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Ellipse</string>
+         <string>Full circle</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Square</string>
+         <string>Empty circle</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Full ellipse</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Empty ellipse</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Full square</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Empty square</string>
         </property>
        </item>
       </widget>

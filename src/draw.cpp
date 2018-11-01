@@ -4,9 +4,6 @@ Draw::Draw(QWidget *parent) : QWidget(parent)
 {
     //put main direction line outside of visible canvas
     this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
-    this->points.push_back(QPointF(20,30));
-    this->points.push_back(QPointF(20,40));
-    this->points.push_back(QPointF(20,35));
 }
 
 void Draw::paintEvent(QPaintEvent *e)
@@ -14,7 +11,7 @@ void Draw::paintEvent(QPaintEvent *e)
     QPen pen_poly(QColor(255, 0, 0, 127), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_rect(QColor(0, 255, 0, 127), 6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_direction(QColor(0, 0, 255, 127), 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen_point(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen_point(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     //QPen pen_point_ch(Qt::red, 3);
 
     QPainter painter(this);
@@ -119,6 +116,7 @@ void Draw::setRect(bool draw_dir_line)
 void Draw::setPoints(QSizeF &canvas_size, int count, std::string &shape)
 {
     clearCanvas();
+    this->points.reserve(count);
     this->points = Algorithms::generatePoints(canvas_size, count, shape);
     repaint();
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <cmath>
 #include <ctime>
+#include <random>
 
 #include "sortbyxasc.h"
 #include "sortbyyasc.h"
