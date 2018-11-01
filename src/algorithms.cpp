@@ -46,6 +46,22 @@ double Algorithms::getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPo
     return acos(dot/(nu*nv))*180/M_PI;
 }
 
+double Algorithms::getPointLineDistance(QPointF &q, QPointF &a, QPointF &b)
+{
+    //point and line distance
+    //TODO: test if points are the same
+    double x12 = b.x()-a.x();
+    double y12 = b.y()-a.y();
+
+    double y1a = q.y()-a.y();
+    double y2a = b.y()-q.y();
+
+    double numerator = -q.x()*y12 + a.x()*y2a + b.x()*y1a;
+    double denominator = sqrt(x12*x12 + y12*y12);
+
+    return fabs(numerator)/denominator;
+}
+
 QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
 {
     const double EPS = 10e-6;
@@ -173,6 +189,94 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 
     return poly_ch;
 }
+
+QPolygonF Algorithms::quickHullCH(std::vector<QPointF> &points)
+{
+    //create convex hull using the quickHullLocal procedure
+    QPolygonF poly_ch;
+    std::vector<QPointF> su, sl;
+
+    //find q1, q3
+    std::sort(points.begin(), points.end(), SortByXAsc());
+    QPointF q1 = points[0];
+    QPointF q3 = points[points.size()-1];
+
+    //add to su, sl
+    su.push_back(q1);
+    su.push_back(q3);
+    sl.push_back(q1);
+    sl.push_back(q3);
+
+    //split to su/sl
+    for(unsigned int i = 0; i < points.size(); i++)
+    {
+        //add to su
+        if(getPointLinePosition(points[i], q1, q3) == LEFT)
+        {
+            su.push_back(points[i]);
+        }
+
+        //add to sl
+        else if(getPointLinePosition(points[i], q1, q3) == RIGHT)
+        {
+            sl.push_back(points[i]);
+        }
+    }
+
+    //add q3 to poly_ch
+    poly_ch.push_back(q3);
+
+    //process su
+    quickHullLocal(1, 0, su, poly_ch);
+
+    //add q1 to poly_ch
+    poly_ch.push_back(q1);
+
+    //process sl
+    quickHullLocal(0, 1, sl, poly_ch);
+
+    return poly_ch;
+}
+
+void Algorithms::quickHullLocal (int s, int e, std::vector<QPointF> &points, QPolygonF &poly_ch)
+{
+    //recursive procedure of quickHullLocal
+    int i_max = -1;
+    double d_max = -1;
+
+    //browse all points
+    for(unsigned int i = 2; i < points.size(); i++)
+    {
+        //is the point in the right halfplane?
+        if(getPointLinePosition(points[i], points[s], points[e]) == RIGHT)
+        {
+            double d = getPointLineDistance(points[i], points[s], points[e]);
+
+            //remember the farthest point
+            if(d > d_max)
+            {
+                d_max = d;
+                i_max = i;
+            }
+        }
+    }
+
+    //point in right halfplane exists
+    if(i_max > -1)
+    {
+        //process first interval
+        quickHullLocal(s, i_max, points, poly_ch);
+
+        //add to poly_ch
+        poly_ch.push_back(points[i_max]);
+
+        //process second interval
+        quickHullLocal(i_max, e, points, poly_ch);
+    }
+
+}
+
+
 
 std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_count, std::string shape)
 {

@@ -79,6 +79,8 @@ void Draw::setCH(std::string &selected_algorithm)
         this->ch = Algorithms::jarvisScanCH(this->points);
     else if(selected_algorithm == "Graham Scan")
         this->ch = Algorithms::grahamScanCH(this->points);
+    else if(selected_algorithm == "Quick Hull")
+        this->ch = Algorithms::quickHullCH(this->points);
 
     //strictly convex hull
     int n = this->ch.size();
