@@ -45,12 +45,12 @@ void Draw::mousePressEvent(QMouseEvent *e)
     repaint();
 }
 
-void Draw::setCH(std::string &selected_algorithm)
+double Draw::setCH(std::string &selected_algorithm)
 {   
     const double EPS = 10e-6;
 
     if(this->points.size() < 3)
-        return;
+        return 0;
 
     //check if there are at least 3 points with different coordinates
     int count = 0;
@@ -67,12 +67,15 @@ void Draw::setCH(std::string &selected_algorithm)
     }
     if(count < 2)
     {
-        return;
+        return 0;
     }
 
     this->rect.clear();
     this->ch.clear();
     this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+
+    //start time
+    clock_t s = std::clock();
 
     //choose algorithm
     if(selected_algorithm == "Jarvis Scan")
@@ -81,6 +84,10 @@ void Draw::setCH(std::string &selected_algorithm)
         this->ch = Algorithms::grahamScanCH(this->points);
     else if(selected_algorithm == "Quick Hull")
         this->ch = Algorithms::quickHullCH(this->points);
+
+    //end time
+    clock_t e = std::clock();
+    double time = (double) (e - s) / CLOCKS_PER_SEC;
 
     //strictly convex hull
     int n = this->ch.size();
@@ -100,6 +107,7 @@ void Draw::setCH(std::string &selected_algorithm)
     }
 
     repaint();
+    return time;
 }
 
 void Draw::setRect(bool draw_dir_line)

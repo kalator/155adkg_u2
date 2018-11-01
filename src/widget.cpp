@@ -15,18 +15,13 @@ Widget::~Widget()
 
 void Widget::on_createCHButton_clicked()
 {
-    //start time
-    clock_t s = std::clock();
+    ui->timer->clear();
 
     std::string selected_algorithm = ui->methodCombo->currentText().toUtf8().constData();
-    ui->canvas->setCH(selected_algorithm);
-
-    //end time
-    clock_t e = std::clock();
-    clock_t time = float (e - s) / CLOCKS_PER_SEC;
+    double time = ui->canvas->setCH(selected_algorithm);
 
     //write time
-    ui->timer->setText(QString::number(time));
+    ui->timer->setText(QString::number(time, 'f', 3) + " s");
 }
 
 void Widget::on_generateButton_clicked()
@@ -39,6 +34,7 @@ void Widget::on_generateButton_clicked()
 
 void Widget::on_clearButton_clicked()
 {
+    ui->timer->clear();
     ui->canvas->clearCanvas();
 }
 

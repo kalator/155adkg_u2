@@ -20,9 +20,7 @@ public:
     explicit Draw(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *e);
-    //QPolygonF getPolygon() {return ch;}
-    void setCH(std::string &selected_algorithm);
-    //std::vector<QPointF> getPoints() {return points;}
+    double setCH(std::string &selected_algorithm);
     void setPoints(QSizeF &canvas_size, int count, std::string &shape);
     void setRect(bool draw_dir_line);
     void clearCanvas();
