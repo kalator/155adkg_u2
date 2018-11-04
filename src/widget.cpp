@@ -125,7 +125,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Random" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -137,7 +137,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Grid" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -149,7 +149,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Circle" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -163,7 +163,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Random" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -175,7 +175,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Grid" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -187,7 +187,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Circle" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -201,7 +201,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Random" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -213,7 +213,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Grid" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -225,7 +225,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Circle" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -239,7 +239,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Random" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -251,7 +251,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Grid" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
@@ -263,7 +263,7 @@ void Widget::on_generateButton_clicked()
 
     file <<"Circle" << std::endl;
 
-    for(int i = 0; i<100; i++)
+    for(int i = 0; i<10; i++)
     {
         for(int j = 0; j < 10; j++)
         {
