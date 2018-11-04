@@ -64,9 +64,10 @@ void Widget::on_generateButton_clicked()
     std::string algS = "Sweep Line";
     for(int i = 0; i < nn; i++)
     {
-        ui->timer->setText(QString::number(i*10));
+
         for(int j = 0; j<nn; j++)
         {
+            ui->timer->setText(QString::number(i*10+j));
             //Random
             ui->canvas->setPoints(canvas_size, np[i], shapeR);
             timeJarvisRand[i*nn+j] = ui->canvas->setCH(algJ);
