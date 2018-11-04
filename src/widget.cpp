@@ -64,6 +64,7 @@ void Widget::on_generateButton_clicked()
     std::string algS = "Sweep Line";
     for(int i = 0; i < nn; i++)
     {
+        ui->timer->setText(QString::number(i*10));
         for(int j = 0; j<nn; j++)
         {
             //Random
