@@ -306,6 +306,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="timeStatButton">
+       <property name="text">
+        <string>Time stat</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="Line" name="line_6">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
