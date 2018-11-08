@@ -276,6 +276,95 @@ void Algorithms::quickHullLocal (int s, int e, std::vector<QPointF> &points, QPo
 
 }
 
+QPolygonF Algorithms::sweepLineCH(std::vector<QPointF> &points){
+
+    //create convex hull using the Sweep line procedure
+    QPolygonF poly_ch;
+
+    //sort by x coord asc
+    std::sort(points.begin(), points.end(), SortByXAsc());
+
+    //create list of predecessors (p) and successors (n)
+    std::vector<int> p(points.size()), n(points.size());
+
+    //create triangle from first 3 points
+/*    if(getPointLinePosition(points[2], points[0], points[1]) == LEFT)
+    {
+        n[0] = 1;
+        n[1] = 2;
+        n[2] = 0;
+
+        p[0] = 2;
+        p[1] = 0;
+        p[2] = 1;
+    }
+    else
+    {
+        n[0] = 2;
+        n[2] = 1;
+        n[1] = 0;
+
+        p[0] = 1;
+        p[2] = 0;
+        p[1] = 2;
+    }
+
+*/    //create initial bi-angle from first 2 points
+    n[0] = 1;
+    n[1] = 0;
+
+    p[0] = 1;
+    p[1] = 0;
+
+    for(unsigned int i = 2; i < points.size(); i++)
+    {
+        //does new point lie on upper/lower halfplane?
+        //link i with predecessor/succesor
+
+        if(getPointLinePosition(points[i], points[p[i-1]], points[i-1]) == LEFT)
+        //if(points[i].y() >= points[i-1].y())
+        {
+            p[i] = i-1;
+            n[i] = n[i-1];
+        }
+        else
+        {
+            p[i] = p[i-1];
+            n[i] = i-1;
+        }
+
+        //link predecessor/successor with i
+        n[p[i]] = i;
+        p[n[i]] = i;
+
+        //fix upper tangent
+        while(getPointLinePosition(points[n[n[i]]], points[i], points[n[i]]) == RIGHT)
+        {
+            p[n[n[i]]] = i;
+            n[i] = n[n[i]];
+
+        }
+
+        //fix lower tangent
+        while(getPointLinePosition(points[p[p[i]]], points[i], points[p[i]]) == LEFT)
+        {
+            n[p[p[i]]] = i;
+            p[i] = p[p[i]];
+        }
+    }
+
+    //add points to poly_ch
+    poly_ch.push_back(points[0]);
+
+    int index = n[0];
+
+    while(index != 0)
+    {
+        poly_ch.push_back(points[index]);
+        index = n[index];
+    }
+    return poly_ch;
+}
 
 
 std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_count, std::string shape)

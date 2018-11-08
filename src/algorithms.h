@@ -29,6 +29,7 @@ public:
     static QPolygonF grahamScanCH(std::vector<QPointF> &points);
     static QPolygonF quickHullCH(std::vector<QPointF> &points);
     static void quickHullLocal(int s, int e, std::vector<QPointF> &points, QPolygonF &poly_ch);
+    static QPolygonF sweepLineCH(std::vector<QPointF> &points);
     static std::vector<QPointF> generatePoints(QSizeF &canvas_size, int point_count, std::string shape);
     static void minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectangle, QLineF &direction, bool compute_dir_line);
 

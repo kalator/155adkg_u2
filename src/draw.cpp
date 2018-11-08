@@ -84,6 +84,8 @@ double Draw::setCH(std::string &selected_algorithm)
         this->ch = Algorithms::grahamScanCH(this->points);
     else if(selected_algorithm == "Quick Hull")
         this->ch = Algorithms::quickHullCH(this->points);
+    else if(selected_algorithm == "Sweep Line")
+        this->ch = Algorithms::sweepLineCH(this->points);
 
     //end time
     clock_t e = std::clock();
