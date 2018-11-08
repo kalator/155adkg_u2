@@ -68,7 +68,7 @@ void Widget::on_timeStatButton_clicked()
     double stat[100];
 
     //time loop
-    int np[10] = {1000,10000,50000,100000,250000,400000,550000,700000,850000,1000000};
+    int np[10] = {1000,10000,100000,230000,360000,490000,620000,750000,880000,1000000};
     int nn = 10;
     for(int i = 0; i < nn; i++)
     {
@@ -96,7 +96,7 @@ void Widget::on_timeStatButton_clicked()
 
     file.open(file_path + "times_" + selected_algorithm+"_"+shape+".txt");
 
-    file << "1000,10000,50000,100000,250000,400000,550000,700000,850000,1000000" << std::endl;
+    file << "1000,10000,100000,230000,360000,490000,620000,750000,880000,1000000" << std::endl;
     for(int i = 0; i < 10; i++)
     {
         for(int j = 0; j<91; j +=10)
