@@ -49,26 +49,30 @@ double Draw::setCH(std::string &selected_algorithm)
 {   
     const double EPS = 10e-6;
 
-    if(this->points.size() < 3)
-        return 0;
-
-    //check if there are at least 3 points with different coordinates
-    int count = 0;
-    QPointF p = points[0];
+    //check for duplicities in points
+    std::sort(this->points.begin(), this->points.end(), SortByXAsc());
+    std::vector<QPointF> points_cleaned;
     for(unsigned int i = 0; i < this->points.size(); i++)
     {
-        if((fabs(p.x() - points[i].x()) > EPS) && (fabs(p.y() - points[i].y()) > EPS))
+        if(i == this->points.size()-1)
         {
-            p = points[i];
-            count++;
-        }
-        if(count == 2)
+            points_cleaned.push_back(this->points[i]);
             break;
+        }
+
+        if(fabs(Algorithms::getDistance(this->points[i], this->points[i+1])) < EPS)
+        {
+            continue;
+        }
+        else
+        {
+            points_cleaned.push_back(this->points[i]);
+        }
     }
-    if(count < 2)
-    {
+    this->points.swap(points_cleaned);
+
+    if(this->points.size() < 3)
         return 0;
-    }
 
     this->rect.clear();
     this->ch.clear();
