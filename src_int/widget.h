@@ -27,9 +27,6 @@ private slots:
     void on_createRectButton_clicked();
 
     void on_helpButton_clicked();
-
-    void on_timeStatButton_clicked();
-
 private:
     Ui::Widget *ui;
 };
