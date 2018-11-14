@@ -1,0 +1,341 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[total={17cm,25cm}, top=2.5cm, left=2.5cm, right=2.5cm,  includefoot]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\graphicspath{ {} }
+\usepackage[czech]{babel}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{amssymb}
+
+
+\pagestyle{empty} % vypne číslování stránek
+
+
+
+
+\usepackage[OT2,OT1]{fontenc}
+\newcommand\cyr
+{
+\renewcommand\rmdefault{wncyr}
+\renewcommand\sfdefault{wncyss}
+\renewcommand\encodingdefault{OT2}
+\normalfont
+\selectfont
+}
+\DeclareTextFontCommand{\textcyr}{\cyr}
+\def\cprime{\char"7E }
+\def\cdprime{\char"7F }
+\def\eoborotnoye{\char’013}
+\def\Eoborotnoye{\char’003}
+
+
+\begin{document}
+
+
+
+\begin{titlepage}
+\begin{center}
+\noindent
+\Large \textbf{České vysoké učení technické v Praze }\\ Fakulta stavební
+\vspace{5cm}
+
+\huge
+
+%vložení loga cvut
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=7cm]{logo.png}
+%\end{figure}
+
+\vspace{0.5cm}
+
+155ADKG: Konvexní obálky \\
+
+\vspace{10cm}
+
+
+
+
+\Large
+Michael Kala\\
+Anna Zemánková \\
+
+\end{center}
+
+\end{titlepage}
+
+
+
+
+\pagestyle{plain}     % zapne obyčejné číslování
+\setcounter{page}{1}  % nastaví čítač stránek znovu od jedné
+
+%\tableofcontents
+%\newpage
+
+\section{Zadání}
+Navrhněte aplikaci s grafickým rozhraním, která určí a vizualizuje konvexní obálku množiny bodů.
+Pro výpočet konvexní obálky použijte algoritmy Jarvis Scan, Quick Hull a Sweep Line.\\
+
+Pro testování algoritmů užijte rozložení bodů: \\
+1) náhodné\\
+2) mřížka\\
+3) kružnice\\ 
+
+\vspace{5cm}
+
+\section{Údaje o bonusových úlohách}
+V rámci této úlohy byly zpracovány všechny bonusy kromě generování star-shaped množiny bodů.\\
+
+
+
+\clearpage
+
+\section{Popis a rozbor problému}
+
+Mějme množinu $S$ bodů $P_i [x_i, y_i]$, naším úkolem je nalézt konvexní obálku $\kappa$ této množiny.\\
+  
+Konvexní obálka $\kappa$ je hranice nejmenší kovexní množiny obsahující všechny body. \\
+Pokud mezi počátečním a koncovým bodem přímého segmentu konvexní obálky leží více bodů , jde o konvexní obálku, pokud jsou odstraněny, jde o striktně konvexní obálku. \\
+Např.:
+\begin{itemize}
+\item Konvexní obálka: A,C,D,B,E,F,G
+\item Striktně konvexní obálka: A,B,E,F,G
+\end{itemize}
+%OBRÁZEK
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{KO.png}
+	\caption{Konvexní obálka}
+\end{figure}
+
+
+\clearpage
+\section{Popis algoritmů}
+
+Pro tuto úlohu byly pro výpočet konvexní obálky vybrány algortimy Jarvis Scan, Graham Scan, Quick Hull a Sweep Line\\
+
+\subsection{Jarvis Scan}
+Tento algoritmus nejprve vybere pivota $q: y_min$ a následně jej přidá do konvexní obálky, poté je vybrán bod $p_j-1$ tak, aby spojnice pivota a $p_j-1$ byla rovnoběžná s osou X $p_j-1: x_min, y_min$ Kvůli numerické stabilitě je vybrána minimální souřadnce X z celé množiny bodů. \\
+Poté je v cyklu vybírán a následně přidáván do konvexní obálky bod $p_j+1$ tak, aby byl $sphericalangle (pj-1, p_j, p_j+1)$ největší (v prvním kroku $p_j = q$). Cyklus skončí,jakmile dojde opět k pivotovi.
+
+\subsubsection{Implementace metody}
+\begin{enumerate}
+\item Nalezení pivota q:  $ q = y_min $ 
+\item Přidej $ q \longrightarrow \kappa $ 
+\item Inicializuj: $p_j-1 \in X, p_j = q, p_j+1 = p_j-1$
+\item Opakuj, dokud $p_j+1 != q: $
+\item 	\hspace {1cm} Nalezni $p_j+1 = argmax_pi \in P \measuredangle (pj-1, p_j, p_i)$
+\item 	\hspace {1cm} Přidej $p_j+1 \longrightarrow \kappa $
+\item 	\hspace {1cm} $p_j-1 = p_j; p_j = p_j+1$
+
+\end{enumerate}
+
+\clearpage
+% =========================================================================================
+\subsection{Graham Scan}
+Nejprve je vybrán pivot $q$ tak, aby z něj bylo vidět na všechny zbylé body. Bodem q je vedena rovnoběžka s osou X a jsou určeny úhly $\omega$ od osy X po všechny ostatní body množiny. Následně jsou setříděny podle velikosti $\omega$ a pospojovány  v tomto pořadí, Vznikne tak star-shaped polygon.\\
+Do zásobníku je přidán bod $q$ a první následující bod, tedy druhý. Poté je testován třetí bod - pokud je splněna podmínka levotočivosti, je přidán do zásbníku. Následně je testován čtvrtý bod. Je-li splněna podmínka levotočiosti, je přidán do zásobníku. Není-li podmínka splněna, je poslední bod v zásobníku smazán a je testován čtvrtý bod z druhého bodu atd. Po skončení cyklu je v zásobníku konvexní obálka množiy bodů.\\
+
+\subsubsection{Implementace metody}
+\begin{enumerate}
+	\item Nalezení pivota q:  $ q = y_min $ 
+	\item Setřídění $ p_i \in S$  dle $\omega_i = \measuredangle (pi, q, x)$, index j odpovídá jejich setříděnému pořadí
+	\item Pokud $\omega_k$ = $\omega_l$ , vymaž bod $p_k,p_l$ bližší ke $q$
+	\item Inicialiuj $j = 2, S = \emptyset$
+	\item $S \longleftarrow q, S \longleftarrow p_1$ (indexy posledních dvou prvků $p_t, p_t-1$) 
+	\item Opakuj pro $j < n:$
+	\item \hspace {1cm} if $p_j$ vlevo od $p_t-1, p_t:$
+	\item \hspace {1.5cm} $S \longleftarrow p_j $
+	\item  \hspace {1.5cm} $j = j + 1$
+	\item \hspace {1cm} else pop $S$	
+\end{enumerate}
+\clearpage
+
+\subsection{Quick Hull}
+Algoritmus Quick Hull je rekurzivní a skládá se tedy s lokální a globální procedury.\\
+V lokální proceduře je hledán nejvzdálenější bod od dělicí přímky, který zároveň leží v její pravé polorovině. Spojnici tohoto bodu a koncového bodu dělicí přímky nazývejme první segment a spojnici vyhledaného body a počátečního bodu dělicí přímky druhý segment. Aby byly body do konvexní obálky přidány ve správném pořadí, je nejprve provedena rekurze pro první segment, následně přidán vyhledaný bod a poté provedena rekurze pro druhý segment.
+
+V globální proceduře je z množiny $S$ nalezen počáteční $p_s$ ($x_min$) a koncový $p_e$ ($x_max$) bod, které tvoří dělící přímku. Nejprve je do konvexní obálky přidán koncový bod dělicí přímky, následně je provedena lokální procedura pro horní polorovinu dělicí přímky, přidán počáteční bod dělicí přímky a  provedena lokální procedura pro dolní polorovinu. Takto dostaneme body konvexní obálky ve správném pořadí.
+
+\subsubsection{Implementace metody - lokální procedura}
+\begin{enumerate}
+	\item Najdi bod $p = arg max_pi \in S ||p_i - (p_s, p_e)||, p \in \sigma_r (p_s, p_e)$
+	\item If $ p\neq\emptyset:$,
+	\item \hspace {1cm} QuickHull ($s,i,S,\kappa$) // Upper Hull
+	\item \hspace {1cm} $\kappa \longleftarrow p$
+	\item \hspace {1cm} QuickHull ($i,e,S,\kappa$) // Lower Hull
+\end{enumerate}
+
+\subsubsection{Implementace metody - globální procedura}
+
+\begin{enumerate}
+	\item  $\kappa = \emptyset, S_U = \emptyset S_L \emptyset$
+	\item $q_1 = x_min, q_3 = x_max$
+	\item $S_U \longleftarrow q_1$, $S_U \longleftarrow q_3$
+	\item $S_L \longleftarrow q_1$, $S_L \longleftarrow q_3$
+	\item for $p_i \in S$
+	\item \hspace {1cm} if ($p_i \in \sigma_l (q_1, q_3)$) $S_U \longleftarrow p_i$
+	\item \hspace {1cm} else $S_L \longleftarrow p_i$
+	\item $\kappa \longleftarrow q_3$
+	\item QuickHull ($1,0,S_U,\kappa$) // Upper Hull
+	\item $\kappa \longleftarrow q_1$
+	\item QuickHull ($0,1,S_L,\kappa$) // Lower Hull
+\end{enumerate}
+\clearpage
+
+\subsection{Sweep Line}
+Metoda sweep line pracuje s "přepisováním" předchůdců a  následníků a jelikož by se tu až nezdravě opakovala slova přechůdce a následník, samotná implementace metody bude srozumitelnější (jako ostatně vždy).
+
+\subsubsection{Implementace metody}
+\begin{enumerate}
+	\item  Sort $P_s = sort (P) by x$
+	\item if $p_3 \in \sigma_L (p_1, p_2)$
+	\item \hspace {1cm} n[1] = 2; n[2] = 3; n[3] = 1
+	\item \hspace {1cm} p[1] = 3; p[2] = 1; p[3] = 2
+	\item else
+	\item \hspace {1cm} n[1] = 3; n[3] = 2; n[2] = 1
+	\item \hspace {1cm} p[1] = 2; p[3] = 1; p[2] = 3
+	\item for $p_i \in P_s, i > 3$
+	\item \hspace {1cm} if ($y_i>y_i-1$) 
+	\item \hspace {2cm} p[i] = i-1; n[i] = n[i-1]
+	\item \hspace {1cm} else 
+	\item \hspace {2cm} n[i] = i-1; p[i] = p[i-1]
+	\item \hspace {1cm}n[p[i]] = i; p[n[i]] = i;
+	\item \hspace {1cm}while (n[n[i]]) $\in \sigma_R (i, n[i]) $
+	\item \hspace {2cm} p[n[n[i]]] = i; n[i] = n[n[i]];
+	\item \hspace {1cm} while (p[p[i]]) $\in \sigma_L (i, p[i]) $
+	\item \hspace {2cm} n[p[p[i]]] = i; p[i] = p[p[i]];
+\end{enumerate}
+\clearpage
+
+
+
+\section{Vstupní data}
+
+Vstupními daty je množina bodů, kterou lze zadat dvěma způsoby:\\
+1) klikáním na kanvas\\
+2) použitím generátoru bodů, který je součástí aplikace, přičemž se body generují dle zadaných kritérií.\\
+
+
+ Do generátoru bodů je třeba zadat počet bodů a následně vybrat v rozbalovacím menu 
+ požadované rozmístění - Random/Grid/Circle/Elipse/Square 
+
+%OBRÁZEK
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{vstup_nastaveni.jpg}
+	\caption{Generátor bodů}
+\end{figure}
+ 
+V případě, že je zadán nekorektní počet bodů pro dané rozmístění - např. pro čtverec nebo grid, je obrazen vytvořen z nejbližšího menšího možného počtu prvků.
+
+%OBRÁZEK
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{vstup.jpg}
+	\caption{Ukázka nekorektního počtu bodů pro zadaný tvar}
+\end{figure}
+ 
+Pokud jsou body vygenerovány pomocí generátoru, je možné přidat další klikáním na kanvas.
+Při špuštění generátoru jsou všechny dosud existující body vymazány.
+
+\clearpage
+\section{Výstupní data}
+Výsledná data (konvexní obálka/minimální ohraničující obdélkník/hlavní směr útvaru) jsou vizualizována v kanvasu aplikace.   \\
+% (OBRÁZEK)
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{min_bound.jpg}
+	\caption{Výstupní data}
+\end{figure}
+
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+\clearpage
+\section{Ukázka vytvořené aplikace}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{popis.jpg}
+	\caption{Okno aplikace}
+\end{figure}
+
+V Pravé horní části je možnost kliknutí na nápovědu "Help", poté se otevře okno s nápovědou, 
+kde je popsán způsob zadávání vstupních dat a funkcionality aplikace.\\
+
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{help.jpg}
+	\caption{Nápověda}
+\end{figure}
+
+\clearpage
+
+
+Nejprve je třeba zadat vstupní data - množinu bodů.\\
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{vstup_nastaveni.jpg}
+	\caption{Vstupní data}
+\end{figure}
+
+Následně je možné vybrat metodu výpočtu konvexní obálky a kliknutím na tlačítko GO v 
+sekci Create convex hull zahájen výpočet a vizualizace konvexní obálky zadané množiny bodů.
+Pod tlačítkem Go je vypsán čas, jak dlouho trval výpočet.\\
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{vystup.jpg}
+	\caption{Výpočet konvexní obálky}
+\end{figure}
+
+
+Pokud chceme spočítat minimální ohraničující obdélník, lze tak učinit kliknutím
+ na tlačítko Go! v sekci  Create inimal bounding rectangle. Pokud je v této sekci
+ zaškrtnuta možnost draw dir. line, vykreslí se také hlavní směr útvaru.\\
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{min_bound.jpg}
+	\caption{Výpočet hlavního směru a nejmenšího ohraničujícícho obdélníku}
+\end{figure}
+
+Vše je uvedeno do původního stavu (smazány body i vypočtené vyýsledky) kliknutím na tlačítko Clear.\\
+
+\clearpage
+
+%=======================================================================================
+\section{Dokumentace}
+
+\section{Přílohy}
+
+ %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{Závěr}
+
+Aplikace byla vzhledem ke zpracování bonusů programována tak, že vstupní i výstupní data jsou typu float, při testování doby běhu algoritmů však bylo zjištěno, že při použití datového typu float je výpočet velmi VELMI pomalý, naopak při přepsání kódu do verze pracující s integrem byl výpočet výrazně rychlejší. Bohužel už ale byly vyřešeny bonusy za předpokladu, že vstupní data jsou typu float, a proto jsou nakonec odevzdávány dvě verze - float pro funkcionality aplikace pro menší množiny bodů a integer pro testování doby běhu algortimů.
+
+\clearpage
+\section{Zdroje}
+
+\begin{enumerate}
+\item  BAYER, Tomáš. Konvexní obálky [online][cit. 21.10.2018]. \\
+Dostupné z: https://web.natur.cuni.cz/~bayertom/images/courses/Adk/adk4.pdf  \\
+%=======================================================================================
+\end{enumerate}
+\end{document}
+
+
+
+ 
