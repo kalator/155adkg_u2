@@ -83,8 +83,10 @@ QPolygon Algorithms::jarvisScanCH(std::vector<QPoint> &points)
     QPoint pjj(s.x(), q.y());
     QPoint pj = q;
 
-    //NOT pushing pivot into poly_ch, for it would be there twice (last loop will add it)
+    //pushing pivot into poly_ch
+    poly_ch.push_back(q);
     //loop
+    int h = 0;
     do
     {
         int i_max = -1;
@@ -104,7 +106,7 @@ QPolygon Algorithms::jarvisScanCH(std::vector<QPoint> &points)
                 fi_max = fi;
             }
 
-            //in case of colinear points, get one, that is closest to point pj
+           //in case of colinear points, get one, that is closest to point pj
             else if(fabs(fi-fi_max) < EPS)
             {
                 double dist = getDistance(pj, points[i]);
@@ -118,7 +120,7 @@ QPolygon Algorithms::jarvisScanCH(std::vector<QPoint> &points)
         }
 
         //add the next point to convex hull
-        poly_ch.push_front(points[i_max]);
+        poly_ch.push_back(points[i_max]);
 
         //assign convex hull vertices
         pjj = pj;
@@ -415,12 +417,12 @@ std::vector<QPoint> Algorithms::generatePoints(QSize &canvas_size, int point_cou
     //Circle
     else if(shape == "Circle")
     {
-        int perimeter;
+        double perimeter;
         w > h ? perimeter = h/2 - SS : perimeter = w/2 - SS;
         for(int i = 0; i < point_count; i++)
         {
-            double x = w/2.0 + perimeter*sin(i*2*M_PI/point_count);
-            double y = h/2.0 + perimeter*cos(i*2*M_PI/point_count);
+            double x = w/2 + perimeter*sin(i*2*M_PI/point_count);
+            double y = h/2 + perimeter*cos(i*2*M_PI/point_count);
             random_points.push_back(QPoint(x,y));
         }
     }

@@ -73,11 +73,13 @@ void Widget::on_timeStatButton_clicked()
     for(int i = 0; i < nn; i++)
     {
 
+        ui->canvas->setPoints(canvas_size, np[i], shape);
+
+
         for(int j = 0; j<nn; j++)
         {
             ui->timer->setText(QString::number(i*10+j));
 
-            ui->canvas->setPoints(canvas_size, np[i], shape);
             stat[i*nn+j] = ui->canvas->setCH(selected_algorithm);
             qDebug() <<np[i] << " points: " << stat[i*nn+j];
         }
