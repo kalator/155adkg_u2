@@ -104,11 +104,22 @@ V rámci této úlohy byly zpracovány všechny bonusy kromě generování star-
 
 Mějme množinu $S$ bodů $P_i [x_i, y_i]$, naším úkolem je nalézt konvexní obálku $\kappa$ této množiny.\\
   
-Konvexní obálka $\kappa$ je hranice nejmenší kovexní množiny obsahující všechny body. Může být použita pro generalizaci v digitální kartografii (např. budov) nebo pro nalezení vhodného tvaru pro balení předmětů tak, aby se minimalizovaly náklady a podobně.\\
+Konvexní obálka $\kappa$ je hranice nejmenší kovexní množiny obsahující všechny body. \\
+Pokud mezi počátečním a koncovým bodem přímého segmentu konvexní obálky leží více bodů , jde o konvexní obálku, pokud jsou odstraněny, jde o striktně konvexní obálku. \\
+Např.:
+\begin{itemize}
+\item Konvexní obálka: A,C,D,B,E,F,G
+\item Striktně konvexní obálka: A,B,E,F,G
+\end{itemize}
+%OBRÁZEK
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{KO.png}
+	\caption{Konvexní obálka}
+\end{figure}
 
 
-
-
+\clearpage
 \section{Popis algoritmů}
 
 Pro tuto úlohu byly pro výpočet konvexní obálky vybrány algortimy Jarvis Scan, Graham Scan, Quick Hull a Sweep Line\\
@@ -207,20 +218,17 @@ Metoda sweep line pracuje s "přepisováním" předchůdců a  následníků a j
 \end{enumerate}
 \clearpage
 
-\section{Problematické situace}
-
 
 
 \section{Vstupní data}
 
 Vstupními daty je množina bodů, kterou lze zadat dvěma způsoby:\\
-\begin{itemize}
-\item klikáním na kanvas\\
-\item použitím generátoru bodů, který je součástí aplikace, přičemž se body generují dle zadaných kritérií.\\
-\end{itemize}
+1) klikáním na kanvas\\
+2) použitím generátoru bodů, který je součástí aplikace, přičemž se body generují dle zadaných kritérií.\\
+
 
  Do generátoru bodů je třeba zadat počet bodů a následně vybrat v rozbalovacím menu 
- požadované rozmístění - Random/Grid/Circle/Elipse/Square\\  
+ požadované rozmístění - Random/Grid/Circle/Elipse/Square 
 
 %OBRÁZEK
 \begin{figure}[h]
@@ -229,8 +237,7 @@ Vstupními daty je množina bodů, kterou lze zadat dvěma způsoby:\\
 	\caption{Generátor bodů}
 \end{figure}
  
-V případě, že je zadán nekorektní počet bodů pro dané rozmístění - např. pro čtverec nebo grid, 
-je obrazen vytvořen z nejbližšího menšího možného počtu prvků. \\
+V případě, že je zadán nekorektní počet bodů pro dané rozmístění - např. pro čtverec nebo grid, je obrazen vytvořen z nejbližšího menšího možného počtu prvků.
 
 %OBRÁZEK
 \begin{figure}[h]
@@ -239,10 +246,10 @@ je obrazen vytvořen z nejbližšího menšího možného počtu prvků. \\
 	\caption{Ukázka nekorektního počtu bodů pro zadaný tvar}
 \end{figure}
  
-Pokud jsou body vygenerovány pomocí generátoru, je možné přidat další klikáním na kanvas. \\
-Při špuštění generátoru jsou všechny dosud existující body vymazány.\\
+Pokud jsou body vygenerovány pomocí generátoru, je možné přidat další klikáním na kanvas.
+Při špuštění generátoru jsou všechny dosud existující body vymazány.
 
-
+\clearpage
 \section{Výstupní data}
 Výsledná data (konvexní obálka/minimální ohraničující obdélkník/hlavní směr útvaru) jsou vizualizována v kanvasu aplikace.   \\
 % (OBRÁZEK)
@@ -271,6 +278,8 @@ kde je popsán způsob zadávání vstupních dat a funkcionality aplikace.\\
 	\includegraphics[width=10cm]{help.jpg}
 	\caption{Nápověda}
 \end{figure}
+
+\clearpage
 
 
 Nejprve je třeba zadat vstupní data - množinu bodů.\\
@@ -307,10 +316,9 @@ Vše je uvedeno do původního stavu (smazány body i vypočtené vyýsledky) kl
 \clearpage
 
 %=======================================================================================
-\section{Testování}
-
 \section{Dokumentace}
 
+\section{Přílohy}
 
  %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \clearpage
@@ -319,7 +327,7 @@ Vše je uvedeno do původního stavu (smazány body i vypočtené vyýsledky) kl
 Aplikace byla vzhledem ke zpracování bonusů programována tak, že vstupní i výstupní data jsou typu float, při testování doby běhu algoritmů však bylo zjištěno, že při použití datového typu float je výpočet velmi VELMI pomalý, naopak při přepsání kódu do verze pracující s integrem byl výpočet výrazně rychlejší. Bohužel už ale byly vyřešeny bonusy za předpokladu, že vstupní data jsou typu float, a proto jsou nakonec odevzdávány dvě verze - float pro funkcionality aplikace pro menší množiny bodů a integer pro testování doby běhu algortimů.
 
 \clearpage
-\section{Reference}
+\section{Zdroje}
 
 \begin{enumerate}
 \item  BAYER, Tomáš. Konvexní obálky [online][cit. 21.10.2018]. \\
