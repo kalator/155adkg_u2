@@ -3,7 +3,7 @@
 Draw::Draw(QWidget *parent) : QWidget(parent)
 {
     //put main direction line outside of visible canvas
-    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+    this->direction.setPoints(QPoint(-5.0,-5.0), QPoint(-5.0,-5.0));
 }
 
 void Draw::paintEvent(QPaintEvent *e)
@@ -40,7 +40,7 @@ void Draw::paintEvent(QPaintEvent *e)
 
 void Draw::mousePressEvent(QMouseEvent *e)
 {
-    QPointF clicked_point(e->x(), e->y());
+    QPoint clicked_point(e->x(), e->y());
     points.push_back(clicked_point);
     repaint();
 }
@@ -51,7 +51,7 @@ double Draw::setCH(std::string &selected_algorithm)
 
     //check for duplicities in points
     std::sort(this->points.begin(), this->points.end(), SortByXAsc());
-    std::vector<QPointF> points_cleaned;
+    std::vector<QPoint> points_cleaned;
     for(unsigned int i = 0; i < this->points.size(); i++)
     {
         if(i == this->points.size()-1)
@@ -76,7 +76,7 @@ double Draw::setCH(std::string &selected_algorithm)
 
     this->rect.clear();
     this->ch.clear();
-    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+    this->direction.setPoints(QPoint(-5.0,-5.0), QPoint(-5.0,-5.0));
 
     //start time
     clock_t s = std::clock();
@@ -122,14 +122,14 @@ void Draw::setRect(bool draw_dir_line)
     if(this->ch.isEmpty())
         return;
 
-    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+    this->direction.setPoints(QPoint(-5.0,-5.0), QPoint(-5.0,-5.0));
 
     //compute minimal rectangle and optionaly main direction line
     Algorithms::minimalRectangle(this->ch, this->rect, this->direction, draw_dir_line);
     repaint();
 }
 
-void Draw::setPoints(QSizeF &canvas_size, int count, std::string &shape)
+void Draw::setPoints(QSize &canvas_size, int count, std::string &shape)
 {
     clearCanvas();
     this->points.reserve(count);
@@ -142,6 +142,6 @@ void Draw::clearCanvas()
     this->ch.clear();
     this->rect.clear();
     this->points.clear();
-    this->direction.setPoints(QPointF(-5.0,-5.0), QPointF(-5.0,-5.0));
+    this->direction.setPoints(QPoint(-5.0,-5.0), QPoint(-5.0,-5.0));
     repaint();
 }

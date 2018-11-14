@@ -6,16 +6,16 @@
 class SortByAngleAsc
 {
 private:
-    QPointF q;
+    QPoint q;
 
 public:
-    SortByAngleAsc(QPointF &q);
+    SortByAngleAsc(QPoint &q);
 
-    double getAngle(QPointF &p);
-    double getDistance(QPointF &p);
+    double getAngle(QPoint &p);
+    double getDistance(QPoint &p);
 
     //override (), sort by angles and if angles are the same, sort by distance, ascending
-    bool operator()(QPointF &p1, QPointF &p2)
+    bool operator()(QPoint &p1, QPoint &p2)
     {
         if(fabs(getAngle(p1)-getAngle(p2)) < 10e-6)
         {

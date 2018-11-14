@@ -30,7 +30,7 @@ void Widget::on_createCHButton_clicked()
 
 void Widget::on_generateButton_clicked()
 {
-    QSizeF canvas_size = ui->canvas->size();
+    QSize canvas_size = ui->canvas->size();
     std::string shape = ui->shapeBox->currentText().toUtf8().constData();
 
     //generate points
@@ -59,7 +59,7 @@ void Widget::on_helpButton_clicked()
 
 void Widget::on_timeStatButton_clicked()
 {
-    QSizeF canvas_size = ui->canvas->size();
+    QSize canvas_size = ui->canvas->size();
 
     std::string shape = ui->shapeBox->currentText().toUtf8().constData();
 

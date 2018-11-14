@@ -5,7 +5,7 @@ Algorithms::Algorithms()
 
 }
 
-TPositon Algorithms::getPointLinePosition(QPointF &q, QPointF &a, QPointF &b)
+TPositon Algorithms::getPointLinePosition(QPoint &q, QPoint &a, QPoint &b)
 {
     double eps = 1.0e-10;
 
@@ -31,7 +31,7 @@ TPositon Algorithms::getPointLinePosition(QPointF &q, QPointF &a, QPointF &b)
         return RIGHT;
 }
 
-double Algorithms::getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4)
+double Algorithms::getTwoVectorsAngle(QPoint &p1, QPoint &p2, QPoint &p3, QPoint &p4)
 {
     double ux = p2.x() - p1.x();
     double uy = p2.y() - p1.y();
@@ -46,7 +46,7 @@ double Algorithms::getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPo
     return acos(dot/(nu*nv))*180/M_PI;
 }
 
-double Algorithms::getPointLineDistance(QPointF &q, QPointF &a, QPointF &b)
+double Algorithms::getPointLineDistance(QPoint &q, QPoint &a, QPoint &b)
 {
     //point and line distance
     //TODO: test if points are the same
@@ -62,26 +62,26 @@ double Algorithms::getPointLineDistance(QPointF &q, QPointF &a, QPointF &b)
     return fabs(numerator)/denominator;
 }
 
-QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
+QPolygon Algorithms::jarvisScanCH(std::vector<QPoint> &points)
 {
     const double EPS = 10e-6;
 
-    QPolygonF poly_ch;
+    QPolygon poly_ch;
 
     //find pivot q
     std::sort(points.begin(), points.end(), SortByYAsc());
-    QPointF q = points[0];
+    QPoint q = points[0];
 
     //point to make parallel with x-axis
     std::sort(points.begin(), points.end(), SortByXAsc());
-    QPointF s = points[0];
+    QPoint s = points[0];
 
     if(fabs(s.x()-q.x())< EPS)
         s.setX(s.x()+100);
 
     //create pjj
-    QPointF pjj(s.x(), q.y());
-    QPointF pj = q;
+    QPoint pjj(s.x(), q.y());
+    QPoint pj = q;
 
     //NOT pushing pivot into poly_ch, for it would be there twice (last loop will add it)
     //loop
@@ -129,17 +129,17 @@ QPolygonF Algorithms::jarvisScanCH(std::vector<QPointF> &points)
     return poly_ch;
 }
 
-QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
+QPolygon Algorithms::grahamScanCH(std::vector<QPoint> &points)
 {
     const double EPS = 10e-6;
 
     //point that together with point q creates a parallel with x-axis
     std::sort(points.begin(), points.end(), SortByXAsc());
-    QPointF s = points[0];
+    QPoint s = points[0];
 
     //find pivot q
     std::sort(points.begin(), points.end(), SortByYAsc());
-    QPointF q = points[0]; //sorted
+    QPoint q = points[0]; //sorted
 
     if(fabs(s.x()-q.x())< EPS)
         s.setX(s.x()+100);
@@ -152,7 +152,7 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
 
     //go through sorted points and rule out those that have same angle as some other and are closer to q
     //save cleared points to vector
-    std::vector<QPointF> points_cleared;
+    std::vector<QPoint> points_cleared;
     points_cleared.push_back(q);
     for(unsigned int i = 1; i < points.size()-1; i++)
     {
@@ -167,7 +167,7 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     }
 
     //create output polygon, add first two points (first one is pivot)
-    QPolygonF poly_ch;
+    QPolygon poly_ch;
     poly_ch.push_back(points_cleared[0]);
     poly_ch.push_back(points_cleared[1]);
 
@@ -190,16 +190,16 @@ QPolygonF Algorithms::grahamScanCH(std::vector<QPointF> &points)
     return poly_ch;
 }
 
-QPolygonF Algorithms::quickHullCH(std::vector<QPointF> &points)
+QPolygon Algorithms::quickHullCH(std::vector<QPoint> &points)
 {
     //create convex hull using the quickHullLocal procedure
-    QPolygonF poly_ch;
-    std::vector<QPointF> su, sl;
+    QPolygon poly_ch;
+    std::vector<QPoint> su, sl;
 
     //find q1, q3
     std::sort(points.begin(), points.end(), SortByXAsc());
-    QPointF q1 = points[0];
-    QPointF q3 = points[points.size()-1];
+    QPoint q1 = points[0];
+    QPoint q3 = points[points.size()-1];
 
     //add to su, sl
     su.push_back(q1);
@@ -238,7 +238,7 @@ QPolygonF Algorithms::quickHullCH(std::vector<QPointF> &points)
     return poly_ch;
 }
 
-void Algorithms::quickHullLocal (int s, int e, std::vector<QPointF> &points, QPolygonF &poly_ch)
+void Algorithms::quickHullLocal (int s, int e, std::vector<QPoint> &points, QPolygon &poly_ch)
 {
     //recursive procedure of quickHullLocal
     int i_max = -1;
@@ -276,10 +276,10 @@ void Algorithms::quickHullLocal (int s, int e, std::vector<QPointF> &points, QPo
 
 }
 
-QPolygonF Algorithms::sweepLineCH(std::vector<QPointF> &points){
+QPolygon Algorithms::sweepLineCH(std::vector<QPoint> &points){
 
     //create convex hull using the Sweep line procedure
-    QPolygonF poly_ch;
+    QPolygon poly_ch;
 
     //sort by x coord asc
     std::sort(points.begin(), points.end(), SortByXAsc());
@@ -367,7 +367,7 @@ QPolygonF Algorithms::sweepLineCH(std::vector<QPointF> &points){
 }
 
 
-std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_count, std::string shape)
+std::vector<QPoint> Algorithms::generatePoints(QSize &canvas_size, int point_count, std::string shape)
 {
     //SS stands for side_strip - thickness of space on sides, that should be empty (to avoid point/polygon drawing, that is not visible)
     const int SS = 10;
@@ -377,7 +377,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
     double w = canvas_size.width();
 
     //create vector of new points
-    std::vector<QPointF> random_points;
+    std::vector<QPoint> random_points;
 
     //Random
     if(shape == "Random")
@@ -389,7 +389,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         {
             double x_new = SS + static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(w-SS - SS)));
             double y_new = SS + static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(h-SS - SS)));
-            random_points.push_back(QPointF(x_new, y_new));
+            random_points.push_back(QPoint(x_new, y_new));
         }
     }
 
@@ -406,7 +406,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
            {
                double x = w/2 - side_length/2 + j*side_length/count_on_row;
                double y = h/2 - side_length/2 + i*side_length/count_on_row;
-               random_points.push_back(QPointF(x, y));
+               random_points.push_back(QPoint(x, y));
            }
        }
 
@@ -421,7 +421,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         {
             double x = w/2.0 + perimeter*sin(i*2*M_PI/point_count);
             double y = h/2.0 + perimeter*cos(i*2*M_PI/point_count);
-            random_points.push_back(QPointF(x,y));
+            random_points.push_back(QPoint(x,y));
         }
     }
 
@@ -432,7 +432,7 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         {
             double x = w/2.0 + (w-SS)/2.0 * sin(i*2*M_PI/point_count);
             double y = h/2.0 + (h-SS)/2.0 * cos(i*2*M_PI/point_count);
-            random_points.push_back(QPointF(x,y));
+            random_points.push_back(QPoint(x,y));
         }
     }
 
@@ -443,35 +443,35 @@ std::vector<QPointF> Algorithms::generatePoints(QSizeF &canvas_size, int point_c
         w > h ? side_length = h-SS : side_length = w-SS;
 
         //firstly add 4 corner points
-        random_points.push_back(QPointF(w/2.0-side_length/2.0,h/2.0-side_length/2.0));
-        random_points.push_back(QPointF(w/2.0-side_length/2.0,h/2.0+side_length/2.0));
-        random_points.push_back(QPointF(w/2.0+side_length/2.0,h/2.0-side_length/2.0));
-        random_points.push_back(QPointF(w/2.0+side_length/2.0,h/2.0+side_length/2.0));
+        random_points.push_back(QPoint(w/2.0-side_length/2.0,h/2.0-side_length/2.0));
+        random_points.push_back(QPoint(w/2.0-side_length/2.0,h/2.0+side_length/2.0));
+        random_points.push_back(QPoint(w/2.0+side_length/2.0,h/2.0-side_length/2.0));
+        random_points.push_back(QPoint(w/2.0+side_length/2.0,h/2.0+side_length/2.0));
 
         //add rest of points
         for(int i = 1; i < (point_count)/4; i++)
         {
-            random_points.push_back(QPointF(w/2.0-side_length/2.0+i*side_length/(point_count/4), h/2.0-side_length/2.0));
-            random_points.push_back(QPointF(w/2.0-side_length/2.0+i*side_length/(point_count/4), h/2.0+side_length/2.0));
-            random_points.push_back(QPointF(w/2.0-side_length/2.0, h/2.0-side_length/2.0+i*side_length/(point_count/4)));
-            random_points.push_back(QPointF(w/2.0+side_length/2.0, h/2.0-side_length/2.0+i*side_length/(point_count/4)));
+            random_points.push_back(QPoint(w/2.0-side_length/2.0+i*side_length/(point_count/4), h/2.0-side_length/2.0));
+            random_points.push_back(QPoint(w/2.0-side_length/2.0+i*side_length/(point_count/4), h/2.0+side_length/2.0));
+            random_points.push_back(QPoint(w/2.0-side_length/2.0, h/2.0-side_length/2.0+i*side_length/(point_count/4)));
+            random_points.push_back(QPoint(w/2.0+side_length/2.0, h/2.0-side_length/2.0+i*side_length/(point_count/4)));
         }
     }
 
     return random_points;
 }
 
-void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectangle, QLineF &direction, bool compute_dir_line)
+void Algorithms::minimalRectangle(QPolygon &poly_ch, QPolygon &minimal_rectangle, QLine &direction, bool compute_dir_line)
 {
     //vector of points to copy poly_ch points into, so poly_ch will not be affected by following operations
-    std::vector<QPointF> points;
+    std::vector<QPoint> points;
     for(int i=0; i<poly_ch.size(); i++)
     {
         points.push_back(poly_ch[i]);
     }
 
     //compute the minimal bounding rectangle
-    QPointF p1, p2, p0; //p1 - actual point, p2 - next point, p0 - previous point
+    QPoint p1, p2, p0; //p1 - actual point, p2 - next point, p0 - previous point
     double x_min_rect, x_max_rect, y_min_rect, y_max_rect; //coordinates of minimal bounding rectangle corners
     double min_volume = std::numeric_limits<double>::max();
     double angle_min;
@@ -488,7 +488,7 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
         rotateByAngle(points, angle);
 
         //copy points into new container for sorting in order to keep original sequence of poly points
-        std::vector<QPointF> points_sort = points;
+        std::vector<QPoint> points_sort = points;
 
         //find coordinates of bounding rectangle
         std::sort(points_sort.begin(), points_sort.end(), SortByXAsc());
@@ -517,10 +517,10 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
     }
 
     //add minimal bounding rectangle points
-    minimal_rectangle.push_back(QPointF(x_min_rect, y_min_rect));
-    minimal_rectangle.push_back(QPointF(x_min_rect, y_max_rect));
-    minimal_rectangle.push_back(QPointF(x_max_rect, y_max_rect));
-    minimal_rectangle.push_back(QPointF(x_max_rect, y_min_rect));
+    minimal_rectangle.push_back(QPoint(x_min_rect, y_min_rect));
+    minimal_rectangle.push_back(QPoint(x_min_rect, y_max_rect));
+    minimal_rectangle.push_back(QPoint(x_max_rect, y_max_rect));
+    minimal_rectangle.push_back(QPoint(x_max_rect, y_min_rect));
 
     //rotate minimal bounding rectangle back (coordinates were rotated from loop)
     rotateByAngle(minimal_rectangle, -angle_min);
@@ -531,13 +531,13 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
         //decide what minimal boundaring rectangle side is longer and set line
         if((x_max_rect-x_min_rect) > (y_max_rect-y_min_rect))
         {
-            direction.setP1(QPointF(x_min_rect, 0.5*(y_max_rect+y_min_rect)));
-            direction.setP2(QPointF(x_max_rect, 0.5*(y_max_rect+y_min_rect)));
+            direction.setP1(QPoint(x_min_rect, 0.5*(y_max_rect+y_min_rect)));
+            direction.setP2(QPoint(x_max_rect, 0.5*(y_max_rect+y_min_rect)));
         }
         else
         {
-            direction.setP1(QPointF(0.5*(x_min_rect+x_max_rect), y_min_rect));
-            direction.setP2(QPointF(0.5*(x_min_rect+x_max_rect), y_max_rect));
+            direction.setP1(QPoint(0.5*(x_min_rect+x_max_rect), y_min_rect));
+            direction.setP2(QPoint(0.5*(x_min_rect+x_max_rect), y_max_rect));
         }
 
         //rotate main direction line back (coordinates were rotated from loop)
@@ -545,40 +545,40 @@ void Algorithms::minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectang
     }
 }
 
-void Algorithms::rotateByAngle(std::vector<QPointF> &points, double angle)
+void Algorithms::rotateByAngle(std::vector<QPoint> &points, double angle)
 {
     angle *= (M_PI/180);
     for(unsigned int i = 0; i < points.size(); i++)
     {
-        QPointF temp_point = points[i];
+        QPoint temp_point = points[i];
         points[i].setX(cos(angle) * temp_point.x() + sin(angle) * temp_point.y());
         points[i].setY(-sin(angle) * temp_point.x() + cos(angle) * temp_point.y());
     }
 }
 
-void Algorithms::rotateByAngle(QPolygonF &points, double angle)
+void Algorithms::rotateByAngle(QPolygon &points, double angle)
 {
     angle *= (M_PI/180);
     for(int i = 0; i < points.size(); i++)
     {
-        QPointF temp_point = points[i];
+        QPoint temp_point = points[i];
         points[i].setX(cos(angle) * temp_point.x() + sin(angle) * temp_point.y());
         points[i].setY(-sin(angle) * temp_point.x() + cos(angle) * temp_point.y());
     }
 }
 
-void Algorithms::rotateByAngle(QLineF &points, double angle)
+void Algorithms::rotateByAngle(QLine &points, double angle)
 {
     angle *= (M_PI/180);
 
-    QPointF p1 = points.p1();
-    QPointF p2 = points.p2();
+    QPoint p1 = points.p1();
+    QPoint p2 = points.p2();
 
-    points.setP1(QPointF(cos(angle) * p1.x() + sin(angle) * p1.y(), -sin(angle) * p1.x() + cos(angle) * p1.y()));
-    points.setP2(QPointF(cos(angle) * p2.x() + sin(angle) * p2.y(), -sin(angle) * p2.x() + cos(angle) * p2.y()));
+    points.setP1(QPoint(cos(angle) * p1.x() + sin(angle) * p1.y(), -sin(angle) * p1.x() + cos(angle) * p1.y()));
+    points.setP2(QPoint(cos(angle) * p2.x() + sin(angle) * p2.y(), -sin(angle) * p2.x() + cos(angle) * p2.y()));
 }
 
-double Algorithms::getDistance(QPointF &a, QPointF &b)
+double Algorithms::getDistance(QPoint &a, QPoint &b)
 {
     return sqrt((a.x()-b.x())*(a.x()-b.x())+(a.y()-b.y())*(a.y()-b.y()));
 }

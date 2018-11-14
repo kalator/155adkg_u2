@@ -1,11 +1,11 @@
 #include "sortbyangleasc.h"
 
-SortByAngleAsc::SortByAngleAsc(QPointF &q)
+SortByAngleAsc::SortByAngleAsc(QPoint &q)
 {
     this->q=q;
 }
 
-double SortByAngleAsc::getAngle(QPointF &p)
+double SortByAngleAsc::getAngle(QPoint &p)
 {
     double ux = -100;
     double uy = 0;
@@ -20,7 +20,7 @@ double SortByAngleAsc::getAngle(QPointF &p)
     return acos(dot/(nu*nv))*180/M_PI;
 }
 
-double SortByAngleAsc::getDistance(QPointF &p)
+double SortByAngleAsc::getDistance(QPoint &p)
 {
     return sqrt((p.x()-q.x())*(p.x()-q.x())+(p.y()-q.y())*(p.y()-q.y()));
 }
