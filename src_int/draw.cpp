@@ -11,7 +11,7 @@ void Draw::paintEvent(QPaintEvent *e)
     QPen pen_poly(QColor(255, 0, 0, 127), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_rect(QColor(0, 255, 0, 127), 6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_direction(QColor(0, 0, 255, 127), 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen_point(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen_point(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     //QPen pen_point_ch(Qt::red, 3);
 
     QPainter painter(this);

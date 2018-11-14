@@ -25,6 +25,14 @@ public:
     static TPositon getPointLinePosition(QPointF &q, QPointF &a, QPointF &b);
     static double getTwoVectorsAngle(QPointF &p1, QPointF &p2, QPointF &p3, QPointF &p4);
     static double getPointLineDistance(QPointF &q, QPointF &a, QPointF &b);
+
+    //override
+    static void rotateByAngle(std::vector<QPointF> &points, double angle);
+    static void rotateByAngle(QPolygonF &points, double angle);
+    static void rotateByAngle(QLineF &points, double angle);
+
+    static double getDistance(QPointF &a, QPointF &b);
+
     static QPolygonF jarvisScanCH(std::vector<QPointF> &points);
     static QPolygonF grahamScanCH(std::vector<QPointF> &points);
     static QPolygonF quickHullCH(std::vector<QPointF> &points);
@@ -33,12 +41,6 @@ public:
     static std::vector<QPointF> generatePoints(QSizeF &canvas_size, int point_count, std::string shape);
     static void minimalRectangle(QPolygonF &poly_ch, QPolygonF &minimal_rectangle, QLineF &direction, bool compute_dir_line);
 
-    //override
-    static void rotateByAngle(std::vector<QPointF> &points, double angle);
-    static void rotateByAngle(QPolygonF &points, double angle);
-    static void rotateByAngle(QLineF &points, double angle);
-
-    static double getDistance(QPointF &a, QPointF &b);
 };
 
 #endif // ALGORITHMS_H
