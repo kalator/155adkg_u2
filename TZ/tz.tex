@@ -318,6 +318,293 @@ Vše je uvedeno do původního stavu (smazány body i vypočtené vyýsledky) kl
 %=======================================================================================
 \section{Dokumentace}
 
+\subsection{Algorithms}
+V třídě Algorithms jsou staticky implementovány algoritmy počítající kovexní obálku a minimální ohraničující obdélník (včetně vodící linie).
+
+\begin{itemize}
+
+	\item Výčtový typ \begin{TPosition}
+		\begin{itemize}
+			\item Typ využitý jako návratová hodnota členské metody \textbf{getPointLinePosition}.
+			\item \textbf{LEFT = 0}
+			\item \textbf{RIGHT = 1}
+			\item \textbf{ON = 2}
+		\end{itemize}
+
+	\item Metoda \textbf{getPointLinePosition}
+		\begin{itemize}
+			\item Tato metoda slouží k určení polohy bodu vůči přímce. Návratovou hodnotou je výčtový typ \texbf{TPosition}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QPointF \&q} - určovaný bod
+					\item \textbf{QPointF \&a, \&b} - body přímky
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item \textbf{LEFT} - bod vlevo od přímky
+					\item \textbf{RIGHT} - bod vpravo od přímky
+					\item \textbf{ON} - bod na přímce
+				\end{itemize}
+
+		\end{itemize}
+
+	\item Metoda \textbf{getTwoVectorsAngle}
+		\begin{itemize}
+			\item Tato metoda slouží k určení úhlu mezi 2 přímkami. Její návratovou hodnotu je \textbf{double}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QPointF \&p1, \&p2} - body první přímky
+					\item \textbf{QPointF \&p3, \&p4} - body druhé přímky
+				\end{itemize}
+		
+			\item Výstup
+				\begin{itemize}
+					\item Úhel mezi 2 přímkami
+				\end{itemize}			
+		\end{itemize}
+
+	\item Metoda \textbf{getPointLineDistance}
+		\begin{itemize}
+			\item Tato metoda slouží k výpočtu vzdálenosti bodu od přímky. Její návratovou hodnotou je \begin{double}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QPointF \&q} - určovaný bod
+					\item \textbf{QPointF \&a, \&b} - body přímky
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Vzdálenost bodu od přímky
+				\end{itemize}
+		\end{itemize}
+
+	\item Přetížená metoda \textbf{rotateByAngle}
+		\begin{itemize}
+			\item Tato metoda slouží k rotaci dané množiny o úhel. Jejím návratovým typem je \textbf{void}.
+			\item Vstup
+				\begin{itemize}
+					\item Přetížení 1
+						\begin{itemize}
+							\item \textbf{std::vector<QPointF> \&points} - vektor bodů, jež má být orotován
+							\item \textbf{double angle} - úhel, o který má rotace být provedena
+ 						\end{itemize}
+					
+					\item Přetížení 2
+						\begin{itemize}
+							\item \textbf{QPolygonF \&points} - polygon, jež má být orotován
+							\item \textbf{double angle} - úhel, o který má rotace být provedena
+ 						\end{itemize}
+
+					\item Přetížení 3
+						\begin{itemize}
+							\item \textbf{QLineF \&points} - úsečka, jež má být orotována
+							\item \textbf{double angle} - úhel, o který má rotace být provedena
+ 						\end{itemize}					
+				\end{itemize}
+			
+		\end{itemize}
+
+	\item Metoda \textbf{getDistance}
+		\begin{itemize}
+			\item Tato metoda slouží k výpočtu vzdálenosti dvou bodů. Jejím výstupním typem je \textbf{double}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QPointF \&a, \&b} - body, mezi kterými je vzdálenost počítána
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}	
+					\item Vypočtená vzdálenost
+				\end{itemize}
+		\end{itemize}
+
+	\item Metoda \textbf{jarvisScanCH}
+		\begin{itemize}
+			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Jarvis Scan. Jejím výstupním typem je \textbf{QPolygonF}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Polygon obsahující kovexní obálku.
+				\end{itemize} 
+		\end{itemize}
+
+	\item Metoda \textbf{grahamScanCH}
+		\begin{itemize}
+			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Graham Scan. Jejím výstupním typem je \textbf{QPolygonF}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Polygon obsahující kovexní obálku.
+				\end{itemize} 
+		\end{itemize}
+
+	\item Metoda \textbf{quickHullCH}
+		\begin{itemize}
+			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Quick Hull. Jejím výstupním typem je \textbf{QPolygonF}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Polygon obsahující kovexní obálku.
+				\end{itemize} 
+		\end{itemize}
+
+	\item Metoda \textbf{quickHullLocal}
+		\begin{itemize}
+			\item Pomocná metoda k výpočtu konvexní obálky metodou Quick Hull. Jejím výstupním typem je \textbf{void}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{int s, e} - index počátečního a koncového bodu, ohraničující množinu bodů, pro které je počítána lokální procedura
+					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+					\item \textbf{QPolygonF \&poly\_ch} - polygon obsahující body konvexní obálky
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Polygon obsahující kovexní obálku.
+				\end{itemize} 
+		\end{itemize}
+
+	\item Metoda \textbf{sweepLineCH}
+		\begin{itemize}
+			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Sweep Line. Jejím výstupním typem je \textbf{QPolygonF}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Polygon obsahující kovexní obálku.
+				\end{itemize} 
+		\end{itemize}
+
+	\item Metoda \textbf{generatePoints}
+		\begin{itemize}
+			\item Metoda pro generování zadaného počtu a tvaru bodů. Jejím výstupním typem je \textbf{std::vector<QPointF>}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QSizeF \&canvas\_size} - rozměry kreslícího plátna, ze kterých se determinuje rozsah generovaných bodů
+					\item \textbf{int point\_count} - počet bodů, který se má generovat
+					\item \textbf{std::string shape} - tvar vytvářené množiny bodů (random, grid, na kružnici, na elipse, na čtverci)
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Vektor nagenerovaných bodů.
+				\end{itemize}
+		\end{itemize}
+
+	\item Metoda \textbf{minimalRectangle}
+		\begin{itemize}
+			\item Metoda pro výpočet minimálního ohraničujícího obdélníku a hlavní linie. Jejím výstupním typem je \textbf{void}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QPolygonF \&poly\_ch} - polygon obsahující konvexní obálku
+					\item \textbf{QPolygonF \&minimal\_rectangle} - polygon, do kterého jsou počítány body minimálního ohraničujícího obdélníku
+					\item \textbf{QLineF \&direction} - hlavní linie minimálního ohraničujícího obdelníku (resp. do této proměnné je počítaná)
+					\item \textbf{bool compute\_dir\_line} - ukazatel určující zda-li má být počítána hlavní linie minimálního ohraničujícího obdélníku
+				\end{itemize}
+
+		\end{itemize}
+\end{itemize}
+
+\subsection{Draw}
+Třída draw slouží k vykreslení vygenerovaných (nebo naklikaných) bodů, vypočteného minimálního ohraničujícího obdélníku a hlavní linie minimálního ohraničujícího obdélníku. V této třídě jsou zároveň nagenerované body zbavené duplicit a vypočtené konvexní obálky se zde omezují na striktní konvexní obálky (vše v metodě \textbf{setCH}. Třída dědí od třídy \textbf{QWidget}. 
+
+\begin{itemize}
+	\item Členské proměnné
+		\begin{itemize}
+			\item \textbf{std::vector<QPointF> points} - vektor obsahující nagenerované nebo naklikané body
+			\item \textbf{QPOlygonF ch} - polygon obsahující body konvexní obálky
+			\item \textbf{QPolygonF rect} - polygon obsahující body minimálního ohraničujícího obdélníku
+			\item \textbf{QLineF direction} - hlavní linie minimálního ohraničujícího obdélníka
+		\end{itemize}
+
+	\item Metoda \textbf{paintEvent}
+		\begin{itemize}
+			\item Tato metoda slouží k vykreslení nagenerovaných (nebo naklikaných) bodů, konvexní obýlky, minimálního ohraničujícího obdélníka a hlavní linie minimálního ohraničujícího obdélníka. Metoda se volá pomocí metody \textbf{repaint()}. Návratovým typem je \begin{void}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QPaintEvent *e}
+				\end{itemize}
+		\end{itemize}
+
+	\item Metoda \textbf{mousePressEvent}
+		\begin{itemize}
+			\item Metoda sloužící k uložení bodu do členské proměnné \textbf{points} určeného kliknutím myší nad kreslícím plátnem. Jejím návratovým typem je \textbf{void}.	
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QMouseEvent *e}
+				\end{itemize}
+		\end{itemize}
+
+	\item Metoda \textbf{setCH}
+		\begin{itemize}
+			\item Tato metoda slouží pro kontrolu duplicity generovaných bodů, pro kontrolu alespoň 3 bodů, k zavolání příslušného algoritmu pro vypočtení konvexní obálky a k omezení konvexní obálky na striktně konvexní obálku. Metoda počítá dobu trvání výpočetních algoritmů. Jejím návratovým typem je \textbf{double}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{std::string \&selected\_algorithm} - uživatelsky vybraný algoritmus pro počítání konvexní obálky
+				\end{itemize}
+			\item Výstup
+				\begin{itemize}
+					\item Čas trvání výpočtu.
+				\end{itemize}
+		\end{itemize}	
+
+	\item Metoda \textbf{setRect}
+		\begin{itemize}
+			\item Tato metoda slouží pro zavolání algoritmu pro výpočte minimálního ohraničujícího obdélníku a jeho hlavní linie. Jejím návratovým typem je \textbf{void}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{bool draw\_dir\_line} - uživatelsky nastavený indikátor, zda-li se má vypočítat hlavní linie minimálního ohraničujícího obdélníku
+				\end{itemize}
+		\end{itemize}
+
+	\item Metoda \textbf{setPoints}
+		\begin{itemize}
+			\item Metoda volající algoritmus pro generování bodů daného počtu a tvaru. Jejím návratovým typem je \textbf{void}.
+			\item Vstup
+				\begin{itemize}
+					\item \textbf{QSizeF \&canvas\_size} - rozměr kreslícího plátna pro pozdější určení rozsahu generování bodů
+					\item \textbf{int count} - počet bodů, jež se má generovat
+					\item \textbf{std::string \&shape} - tvar, do kterého se body mají generovat
+				\end{itemize}
+		\end{itemize}
+
+	\item Metoda \textbf{clearCanvas}
+		\begin{itemize}
+			\item Metoda, která maže obsah kreslícího okna. Jejím návratovým typem je \textbf{void}. Do metody nevstupují žádné parametry.
+		\end{itemize}
+\end{itemize}
+
+\subsection{SortByXAsc, SortByYAsc, SortByAngleAsc}
+Třídy sloužící jako sortovací kritérium - podle rostoucí souřadnice x resp. souřadnice y (při stejných souřadnicích x resp. y je druhým kritériem druhá souřadnice) a podle rostoucího úhlu mezi body (při stejném úhlu je druhým kritériem vzdálenosti mezi body).
+
+\subsection{Widget}
+Tato třída slouží ke komunikaci s GUI. Třída dědí od třídy QWidget. Všechny její metody slouží jako sloty k signálům z GUI, nemají žádné vstupní hodnoty a jejich návratovým typem je void. 
+
+\begin{itemize}
+	\item Metoda \textbf{on\_createCHButton\_clicked} - reaguje na zmáčknutí tlačítka pro vypočtení konvexní obálky, volá metodu \textbf{setCH} z třídy \textbf{Draw}, zapisuje čas výpočtu do GUI.
+
+	\item Metoda \textbf{on\_generateButton\_clicked} - reaguje na zmáčknutí tlačítka pro generování bodů, volá metodu \textbf{setPoints} z třídy \textbf{Draw}.
+
+	\item Metoda \textbf{on\_clearButton\_clicked} - reaguje na zmáčknutí tlačítka pro vymazání obsahu kreslícího plátna, volá metodu \textbf{clearCanvas} z třídy \textbf{Draw}.
+
+	\item Metoda \textbf{on\_createRectButton\_clicked} - reaguje na zmáčknutí tlačítka pro vypočtení minimálního ohraničujícího obdélníka, volá metodu \textbf{setRect} z třídy \textbf{Draw}.
+
+	\item Metoda \textbf{on\_helpButton\_clicked} - reaguje na zmáčknutí tlačítka pro volání nápovědy, volá okno s nápovědou \textbf{help\_dialog} z třídy \textbf{HelpDialog}.
+
+\end{itemize} 
+
+\subsection{HelpDialog}
+Třída sloužící pro vykreslení okna s nápovědou.
+
+
+
 \section{Přílohy}
 
  %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
