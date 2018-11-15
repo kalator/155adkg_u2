@@ -474,9 +474,9 @@ void Algorithms::minimalRectangle(QPolygon &poly_ch, QPolygon &minimal_rectangle
 
     //compute the minimal bounding rectangle
     QPoint p1, p2, p0; //p1 - actual point, p2 - next point, p0 - previous point
-    double x_min_rect, x_max_rect, y_min_rect, y_max_rect; //coordinates of minimal bounding rectangle corners
+    double x_min_rect = 0, x_max_rect = 0, y_min_rect = 0, y_max_rect = 0; //coordinates of minimal bounding rectangle corners
     double min_volume = std::numeric_limits<double>::max();
-    double angle_min;
+    double angle_min = 0;
     int n = points.size();
     for(int i=0; i<n; i++)
     {

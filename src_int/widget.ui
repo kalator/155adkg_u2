@@ -91,7 +91,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>That lies on:</string>
+        <string>That lie on:</string>
        </property>
       </widget>
      </item>
