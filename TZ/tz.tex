@@ -127,7 +127,7 @@ Pro tuto úlohu byly pro výpočet konvexní obálky vybrány algortimy Jarvis S
 \subsection{Jarvis Scan}
 Tento algoritmus nejprve vybere pivota $q: y_min$ a následně jej přidá do konvexní obálky, poté je vybrán bod $p_j-1$ tak, aby spojnice pivota a $p_j-1$ byla rovnoběžná s osou X $p_j-1: x_min, y_min$ Kvůli numerické stabilitě je vybrána minimální souřadnce X z celé množiny bodů. \\
 Poté je v cyklu vybírán a následně přidáván do konvexní obálky bod $p_j+1$ tak, aby byl $sphericalangle (pj-1, p_j, p_j+1)$ největší (v prvním kroku $p_j = q$). Cyklus skončí,jakmile dojde opět k pivotovi.
-
+\vspace{1.5cm}
 \subsubsection{Implementace metody}
 \begin{enumerate}
 \item Nalezení pivota q:  $ q = y_min $ 
@@ -137,9 +137,26 @@ Poté je v cyklu vybírán a následně přidáván do konvexní obálky bod $p_
 \item 	\hspace {1cm} Nalezni $p_j+1 = argmax_pi \in P \measuredangle (pj-1, p_j, p_i)$
 \item 	\hspace {1cm} Přidej $p_j+1 \longrightarrow \kappa $
 \item 	\hspace {1cm} $p_j-1 = p_j; p_j = p_j+1$
-
+\clearpage
 \end{enumerate}
 
+\subsubsection{Problematické situace}
+Jestliže se ve vstupních datech vyskytují kolineární body $p_k, p_l$ (např. grid), pak může nastat:  $\sphericalangle (pj-1, p_j, p_k) = \sphericalangle (pj-1, p_j, p_k)$. Je tedy nutné přidat podmínku, aby byl do konvexní obálky zahrnut bod, jehož vzdálenost od bodu $p_j$ je větší.
+
+\begin{enumerate}
+\item if ($\omega_k = \omega_l$):
+\item \hspace{1cm} if ($||p_j, p_k||$ $>||p_j ,p_l||$):
+\item \hspace{2cm} $\kappa \longleftarrow p_k$
+\item \hspace{1cm} else:
+\item \hspace{2cm} $\kappa \longleftarrow p_l$
+\end{enumerate}
+
+% (OBRÁZEK)
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{JS.jpg}
+	\caption{Kolineární body}
+\end{figure}
 \clearpage
 % =========================================================================================
 \subsection{Graham Scan}
@@ -159,6 +176,8 @@ Do zásobníku je přidán bod $q$ a první následující bod, tedy druhý. Pot
 	\item  \hspace {1.5cm} $j = j + 1$
 	\item \hspace {1cm} else pop $S$	
 \end{enumerate}
+
+
 \clearpage
 
 \subsection{Quick Hull}
@@ -193,6 +212,18 @@ V globální proceduře je z množiny $S$ nalezen počáteční $p_s$ ($x_min$) 
 \end{enumerate}
 \clearpage
 
+\subsubsection{Prolematické situace}
+Problematická situace při využití algotimu Quick Hull nastává v okamžiku, kdy je vstupní množina uspořádána do kruhu/kružnice. Spojnice počátečního $p_s$ a koncového bodu $p_e$ je vždy sečna kružnice, dokud do konvexní obálky nejsou zařazeny všechny body kružnice, jak je vidět z obrázku.
+
+% (OBRÁZEK)
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{circle.jpg}
+	\caption{Quick Hull - kružnice}
+\end{figure}
+\clearpage
+
+\clearpage
 \subsection{Sweep Line}
 Metoda sweep line pracuje s "přepisováním" předchůdců a  následníků a jelikož by se tu až nezdravě opakovala slova přechůdce a následník, samotná implementace metody bude srozumitelnější (jako ostatně vždy).
 
@@ -511,6 +542,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 
 		\end{itemize}
 \end{itemize}
+\clearpage
 
 \subsection{Draw}
 Třída draw slouží k vykreslení vygenerovaných (nebo naklikaných) bodů, vypočteného minimálního ohraničujícího obdélníku a hlavní linie minimálního ohraničujícího obdélníku. V této třídě jsou zároveň nagenerované body zbavené duplicit a vypočtené konvexní obálky se zde omezují na striktní konvexní obálky (vše v metodě \textbf{setCH}. Třída dědí od třídy \textbf{QWidget}. 
@@ -583,6 +615,7 @@ Třída draw slouží k vykreslení vygenerovaných (nebo naklikaných) bodů, v
 
 \subsection{SortByXAsc, SortByYAsc, SortByAngleAsc}
 Třídy sloužící jako sortovací kritérium - podle rostoucí souřadnice x resp. souřadnice y (při stejných souřadnicích x resp. y je druhým kritériem druhá souřadnice) a podle rostoucího úhlu mezi body (při stejném úhlu je druhým kritériem vzdálenosti mezi body).
+\clearpage
 
 \subsection{Widget}
 Tato třída slouží ke komunikaci s GUI. Třída dědí od třídy QWidget. Všechny její metody slouží jako sloty k signálům z GUI, nemají žádné vstupní hodnoty a jejich návratovým typem je void. 
@@ -600,13 +633,17 @@ Tato třída slouží ke komunikaci s GUI. Třída dědí od třídy QWidget. V�
 
 \end{itemize} 
 
+\vspace{3cm}
 \subsection{HelpDialog}
 Třída sloužící pro vykreslení okna s nápovědou.
 
-
+\clearpage
 
 \section{Přílohy}
 
+\begin{itemize}
+	\item Príloha č.1: Testování výpočetních dob algoritmů - "Testovani.pdf"
+\end{itemize}
  %--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \clearpage
 \section{Závěr}
