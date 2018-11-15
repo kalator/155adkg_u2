@@ -323,7 +323,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 
 \begin{itemize}
 
-	\item Výčtový typ \begin{TPosition}
+	\item Výčtový typ \textbf{TPosition}
 		\begin{itemize}
 			\item Typ využitý jako návratová hodnota členské metody \textbf{getPointLinePosition}.
 			\item \textbf{LEFT = 0}
@@ -333,7 +333,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 
 	\item Metoda \textbf{getPointLinePosition}
 		\begin{itemize}
-			\item Tato metoda slouží k určení polohy bodu vůči přímce. Návratovou hodnotou je výčtový typ \texbf{TPosition}.
+			\item Tato metoda slouží k určení polohy bodu vůči přímce. Návratovou hodnotou je výčtový typ \textbf{TPosition}.
 			\item Vstup
 				\begin{itemize}
 					\item \textbf{QPointF \&q} - určovaný bod
@@ -365,7 +365,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 
 	\item Metoda \textbf{getPointLineDistance}
 		\begin{itemize}
-			\item Tato metoda slouží k výpočtu vzdálenosti bodu od přímky. Její návratovou hodnotou je \begin{double}.
+			\item Tato metoda slouží k výpočtu vzdálenosti bodu od přímky. Její návratovou hodnotou je \textbf {double} %\begin{double.}
 			\item Vstup
 				\begin{itemize}
 					\item \textbf{QPointF \&q} - určovaný bod
@@ -421,7 +421,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Jarvis Scan. Jejím výstupním typem je \textbf{QPolygonF}.
 			\item Vstup
 				\begin{itemize}
-					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
 				\end{itemize}
 			\item Výstup
 				\begin{itemize}
@@ -434,7 +434,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Graham Scan. Jejím výstupním typem je \textbf{QPolygonF}.
 			\item Vstup
 				\begin{itemize}
-					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
 				\end{itemize}
 			\item Výstup
 				\begin{itemize}
@@ -447,7 +447,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Quick Hull. Jejím výstupním typem je \textbf{QPolygonF}.
 			\item Vstup
 				\begin{itemize}
-					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
 				\end{itemize}
 			\item Výstup
 				\begin{itemize}
@@ -461,7 +461,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 			\item Vstup
 				\begin{itemize}
 					\item \textbf{int s, e} - index počátečního a koncového bodu, ohraničující množinu bodů, pro které je počítána lokální procedura
-					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \&\textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
 					\item \textbf{QPolygonF \&poly\_ch} - polygon obsahující body konvexní obálky
 				\end{itemize}
 			\item Výstup
@@ -475,7 +475,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Sweep Line. Jejím výstupním typem je \textbf{QPolygonF}.
 			\item Vstup
 				\begin{itemize}
-					\item \textbf{std::vector<QPointF> \&points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
+					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
 				\end{itemize}
 			\item Výstup
 				\begin{itemize}
@@ -485,7 +485,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 
 	\item Metoda \textbf{generatePoints}
 		\begin{itemize}
-			\item Metoda pro generování zadaného počtu a tvaru bodů. Jejím výstupním typem je \textbf{std::vector<QPointF>}.
+			\item Metoda pro generování zadaného počtu a tvaru bodů. Jejím výstupním typem je \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points}.
 			\item Vstup
 				\begin{itemize}
 					\item \textbf{QSizeF \&canvas\_size} - rozměry kreslícího plátna, ze kterých se determinuje rozsah generovaných bodů
@@ -518,7 +518,7 @@ Třída draw slouží k vykreslení vygenerovaných (nebo naklikaných) bodů, v
 \begin{itemize}
 	\item Členské proměnné
 		\begin{itemize}
-			\item \textbf{std::vector<QPointF> points} - vektor obsahující nagenerované nebo naklikané body
+			\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points} - vektor obsahující nagenerované nebo naklikané body
 			\item \textbf{QPOlygonF ch} - polygon obsahující body konvexní obálky
 			\item \textbf{QPolygonF rect} - polygon obsahující body minimálního ohraničujícího obdélníku
 			\item \textbf{QLineF direction} - hlavní linie minimálního ohraničujícího obdélníka
@@ -526,7 +526,7 @@ Třída draw slouží k vykreslení vygenerovaných (nebo naklikaných) bodů, v
 
 	\item Metoda \textbf{paintEvent}
 		\begin{itemize}
-			\item Tato metoda slouží k vykreslení nagenerovaných (nebo naklikaných) bodů, konvexní obýlky, minimálního ohraničujícího obdélníka a hlavní linie minimálního ohraničujícího obdélníka. Metoda se volá pomocí metody \textbf{repaint()}. Návratovým typem je \begin{void}.
+			\item Tato metoda slouží k vykreslení nagenerovaných (nebo naklikaných) bodů, konvexní obýlky, minimálního ohraničujícího obdélníka a hlavní linie minimálního ohraničujícího obdélníka. Metoda se volá pomocí metody \textbf{repaint()}. Návratovým typem je \textbf{void}.
 			\item Vstup
 				\begin{itemize}
 					\item \textbf{QPaintEvent *e}
