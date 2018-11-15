@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  15 NOV 2018 10:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  15 NOV 2018 18:35
 entering extended mode
 **./tz.tex
 (tz.tex
@@ -804,7 +804,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--126
 [3
 
 ]
-<JS.jpg, id=161, 491.436pt x 361.95226pt>
+<JS.jpg, id=163, 491.436pt x 361.95226pt>
 File: JS.jpg Graphic file (type jpg)
 <use JS.jpg>
 Package pdftex.def Info: JS.jpg  used on input line 157.
@@ -821,7 +821,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--165
 ] [6
 
 ]
-<circle.jpg, id=208, 491.436pt x 356.532pt>
+<circle.jpg, id=209, 491.436pt x 356.532pt>
 File: circle.jpg Graphic file (type jpg)
 <use circle.jpg>
 Package pdftex.def Info: circle.jpg  used on input line 221.
@@ -842,12 +842,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 270--273
 
  []
 
-<vstup_nastaveni.jpg, id=235, 491.436pt x 361.95226pt>
+<vstup_nastaveni.jpg, id=236, 491.436pt x 361.95226pt>
 File: vstup_nastaveni.jpg Graphic file (type jpg)
 <use vstup_nastaveni.jpg>
 Package pdftex.def Info: vstup_nastaveni.jpg  used on input line 281.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
-<vstup.jpg, id=236, 491.436pt x 361.95226pt>
+<vstup.jpg, id=237, 491.436pt x 361.95226pt>
 File: vstup.jpg Graphic file (type jpg)
 <use vstup.jpg>
 Package pdftex.def Info: vstup.jpg  used on input line 290.
@@ -858,7 +858,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [9
 
  <./vstup_nastaveni.jpg>] [10 <./vstup.jpg>]
-<min_bound.jpg, id=252, 491.436pt x 361.95226pt>
+<min_bound.jpg, id=253, 491.436pt x 361.95226pt>
 File: min_bound.jpg Graphic file (type jpg)
 <use min_bound.jpg>
 Package pdftex.def Info: min_bound.jpg  used on input line 303.
@@ -871,7 +871,7 @@ Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 310.
 
-<popis.jpg, id=258, 491.436pt x 361.95226pt>
+<popis.jpg, id=259, 491.436pt x 361.95226pt>
 File: popis.jpg Graphic file (type jpg)
 <use popis.jpg>
 Package pdftex.def Info: popis.jpg  used on input line 313.
@@ -881,7 +881,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 317--319
 
  []
 
-<help.jpg, id=259, 485.4135pt x 329.43076pt>
+<help.jpg, id=260, 485.4135pt x 329.43076pt>
 File: help.jpg Graphic file (type jpg)
 <use help.jpg>
 Package pdftex.def Info: help.jpg  used on input line 323.
@@ -893,7 +893,7 @@ File: vstup_nastaveni.jpg Graphic file (type jpg)
 <use vstup_nastaveni.jpg>
 Package pdftex.def Info: vstup_nastaveni.jpg  used on input line 334.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
-<vystup.jpg, id=267, 491.436pt x 361.95226pt>
+<vystup.jpg, id=268, 491.436pt x 361.95226pt>
 File: vystup.jpg Graphic file (type jpg)
 <use vystup.jpg>
 Package pdftex.def Info: vystup.jpg  used on input line 344.
@@ -1012,7 +1012,7 @@ Here is how much of TeX's memory you used:
  14237 multiletter control sequences out of 15000+200000
  10271 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,7n,39p,1374b,625s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,7n,39p,1372b,625s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmbx12.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmmi12.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/font
@@ -1022,11 +1022,12 @@ ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Anna/AppDa
 ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/
 Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmtt12.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/symbols/msam10.pfb>
-Output written on tz.pdf (26 pages, 837905 bytes).
+cm/cmsy8.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmtt12.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on tz.pdf (26 pages, 847036 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
+ 389 PDF objects out of 1000 (max. 8388607)
  129 named destinations out of 1000 (max. 500000)
  294 words of extra memory for PDF output out of 10000 (max. 10000000)
 

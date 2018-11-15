@@ -125,23 +125,23 @@ Např.:
 Pro tuto úlohu byly pro výpočet konvexní obálky vybrány algortimy Jarvis Scan, Graham Scan, Quick Hull a Sweep Line.\\
 
 \subsection{Jarvis Scan}
-Tento algoritmus nejprve vybere pivota $q: y_min$ a následně jej přidá do konvexní obálky, poté je vybrán bod $p_j-1$ tak, aby spojnice pivota a $p_j-1$ byla rovnoběžná s osou X $p_j-1: x_min, y_min$ Kvůli numerické stabilitě je vybrána minimální souřadnce X z celé množiny bodů. \\
-Poté je v cyklu vybírán a následně přidáván do konvexní obálky bod $p_j+1$ tak, aby byl $sphericalangle (pj-1, p_j, p_j+1)$ největší (v prvním kroku $p_j = q$). Cyklus skončí,jakmile dojde opět k pivotovi.
+Tento algoritmus nejprve vybere pivota $q: y_{min}$ a následně jej přidá do konvexní obálky, poté je vybrán bod $p_{j-1}$ tak, aby spojnice pivota a $p_{j-1}$ byla rovnoběžná s osou X $p_{j-1}: x_{min}, y_{min}$ Kvůli numerické stabilitě je vybrána minimální souřadnce X z celé množiny bodů. \\
+Poté je v cyklu vybírán a následně přidáván do konvexní obálky bod $p_j+1$ tak, aby byl $sphericalangle (p_{j-1}, p_j, p_{j+1})$ největší (v prvním kroku $p_j = q$). Cyklus skončí,jakmile dojde opět k pivotovi.
 \vspace{1.5cm}
 \subsubsection{Implementace metody}
 \begin{enumerate}
-\item Nalezení pivota q:  $ q = y_min $ 
+\item Nalezení pivota q:  $ q = y_{min} $ 
 \item Přidej $ q \longrightarrow \kappa $ 
-\item Inicializuj: $p_j-1 \in X, p_j = q, p_j+1 = p_j-1$
-\item Opakuj, dokud $p_j+1 != q: $
-\item 	\hspace {1cm} Nalezni $p_j+1 = argmax_pi \in P \measuredangle (pj-1, p_j, p_i)$
+\item Inicializuj: $p_{j-1} \in X, p_j = q, p_{j+1} = p_{j-1}$
+\item Opakuj, dokud $p_{j+1} != q: $
+\item 	\hspace {1cm} Nalezni $p_j+1 = argmax_{pi \in P} \measuredangle (p_{j-1}, p_j, p_i)$
 \item 	\hspace {1cm} Přidej $p_j+1 \longrightarrow \kappa $
-\item 	\hspace {1cm} $p_j-1 = p_j; p_j = p_j+1$
+\item 	\hspace {1cm} $p_{j-1} = p_j; p_j = p_{j+1}$
 \clearpage
 \end{enumerate}
 
 \subsubsection{Problematické situace}
-Jestliže se ve vstupních datech vyskytují kolineární body $p_k, p_l$ (např. grid), pak může nastat:  $\sphericalangle (pj-1, p_j, p_k) = \sphericalangle (pj-1, p_j, p_k)$. Je tedy nutné přidat podmínku, aby byl do konvexní obálky zahrnut bod, jehož vzdálenost od bodu $p_j$ je větší.
+Jestliže se ve vstupních datech vyskytují kolineární body $p_k, p_l$ (např. grid), pak může nastat:  $\sphericalangle (p_{j-1}, p_j, p_k) = \sphericalangle (p_{j-1}, p_j, p_l)$. Je tedy nutné přidat podmínku, aby byl do konvexní obálky zahrnut bod, jehož vzdálenost od bodu $p_j$ je větší.
 
 \begin{enumerate}
 \item if ($\omega_k = \omega_l$):
@@ -165,13 +165,13 @@ Do zásobníku je přidán bod $q$ a první následující bod, tedy druhý. Pot
 
 \subsubsection{Implementace metody}
 \begin{enumerate}
-	\item Nalezení pivota q:  $ q = y_min $ 
-	\item Setřídění $ p_i \in S$  dle $\omega_i = \measuredangle (pi, q, x)$, index j odpovídá jejich setříděnému pořadí
+	\item Nalezení pivota q:  $ q = y_{min} $ 
+	\item Setřídění $ p_i \in S$  dle $\omega_i = \measuredangle (p_i, q, x)$, index j odpovídá jejich setříděnému pořadí
 	\item Pokud $\omega_k$ = $\omega_l$ , vymaž bod $p_k,p_l$ bližší ke $q$
 	\item Inicialiuj $j = 2, S = \emptyset$
-	\item $S \longleftarrow q, S \longleftarrow p_1$ (indexy posledních dvou prvků $p_t, p_t-1$) 
+	\item $S \longleftarrow q, S \longleftarrow p_1$ (indexy posledních dvou prvků $p_t, p_{t-1}$) 
 	\item Opakuj pro $j < n:$
-	\item \hspace {1cm} if $p_j$ vlevo od $p_t-1, p_t:$
+	\item \hspace {1cm} if $p_j$ vlevo od $p_{t-1}, p_t:$
 	\item \hspace {1.5cm} $S \longleftarrow p_j $
 	\item  \hspace {1.5cm} $j = j + 1$
 	\item \hspace {1cm} else pop $S$	
@@ -188,7 +188,7 @@ V globální proceduře je z množiny $S$ nalezen počáteční $p_s$ ($x_min$) 
 
 \subsubsection{Implementace metody - lokální procedura}
 \begin{enumerate}
-	\item Najdi bod $p = arg max_pi \in S ||p_i - (p_s, p_e)||, p \in \sigma_r (p_s, p_e)$
+	\item Najdi bod $p = arg max_{pi \in S} ||p_i - (p_s, p_e)||, p \in \sigma_r (p_s, p_e)$
 	\item If $ p\neq\emptyset:$,
 	\item \hspace {1cm} QuickHull ($s,i,S,\kappa$) // Upper Hull
 	\item \hspace {1cm} $\kappa \longleftarrow p$
@@ -199,7 +199,7 @@ V globální proceduře je z množiny $S$ nalezen počáteční $p_s$ ($x_min$) 
 
 \begin{enumerate}
 	\item  $\kappa = \emptyset, S_U = \emptyset S_L \emptyset$
-	\item $q_1 = x_min, q_3 = x_max$
+	\item $q_1 = x_{min}, q_3 = x_{max}$
 	\item $S_U \longleftarrow q_1$, $S_U \longleftarrow q_3$
 	\item $S_L \longleftarrow q_1$, $S_L \longleftarrow q_3$
 	\item for $p_i \in S$
@@ -213,7 +213,7 @@ V globální proceduře je z množiny $S$ nalezen počáteční $p_s$ ($x_min$) 
 \clearpage
 
 \subsubsection{Prolematické situace}
-Problematická situace při využití algotimu Quick Hull nastává v okamžiku, kdy je vstupní množina uspořádána do kruhu/kružnice. Spojnice počátečního $p_s$ a koncového bodu $p_e$ je vždy sečna kružnice, dokud do konvexní obálky nejsou zařazeny všechny body kružnice, jak je vidět z obrázku.
+Problematická situace při využití algotimu Quick Hull nastává v okamžiku, kdy je vstupní množina uspořádána do kružnice. Spojnice počátečního $p_s$ a koncového bodu $p_e$ je pak vždy sečna kružnice -> existuje další bod v pravé polorovině dokud do konvexní obálky nejsou zařazeny všechny body a rekurze bude volána pro každý bod vstupní množiny. V obrázku níže jsou naznačeny první tři kroky, odlišené barvami.
 
 % (OBRÁZEK)
 \begin{figure}[h]
@@ -229,7 +229,7 @@ Metoda sweep line pracuje s "přepisováním" předchůdců a  následníků a j
 
 \subsubsection{Implementace metody}
 \begin{enumerate}
-	\item  Sort $P_s = sort (P) by x$
+	\item  Sort $P_s = sort (P)$ by x
 	\item if $p_3 \in \sigma_L (p_1, p_2)$
 	\item \hspace {1cm} n[1] = 2; n[2] = 3; n[3] = 1
 	\item \hspace {1cm} p[1] = 3; p[2] = 1; p[3] = 2
