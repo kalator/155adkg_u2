@@ -122,7 +122,7 @@ Např.:
 \clearpage
 \section{Popis algoritmů}
 
-Pro tuto úlohu byly pro výpočet konvexní obálky vybrány algortimy Jarvis Scan, Graham Scan, Quick Hull a Sweep Line\\
+Pro tuto úlohu byly pro výpočet konvexní obálky vybrány algortimy Jarvis Scan, Graham Scan, Quick Hull a Sweep Line.\\
 
 \subsection{Jarvis Scan}
 Tento algoritmus nejprve vybere pivota $q: y_min$ a následně jej přidá do konvexní obálky, poté je vybrán bod $p_j-1$ tak, aby spojnice pivota a $p_j-1$ byla rovnoběžná s osou X $p_j-1: x_min, y_min$ Kvůli numerické stabilitě je vybrána minimální souřadnce X z celé množiny bodů. \\
@@ -248,6 +248,20 @@ Metoda sweep line pracuje s "přepisováním" předchůdců a  následníků a j
 	\item \hspace {2cm} n[p[p[i]]] = i; p[i] = p[p[i]];
 \end{enumerate}
 \clearpage
+
+\subsection{Minimální ohraničující obdélník}
+Pro výpočet minimálního ohraničující obdélníku byl vybrán následující algoritmus. Na jeho vstupu je konvexní obálka ch.
+
+\subsubsection{Implementace metody}
+\begin{enumerate}
+
+	\item for $p_{i\%n}, p_{(i+1)\%n} \in ch$ //n = ch.size
+	\item {1cm} rotuj ch o \sphericalangle (|$p_{i\%n}, p_{(i+1)\%n$| , || s osou x)
+	\item {1cm} najdi nejmenší resp. největší x a y souřadnice, spočti obsah jimi vytvořeného obdélníka, pokud je menší než jakýkoliv doposud vypočtený, ulož ho, ulož úhel, o který bylo rotováno, ulož souřadnice obdélníka 
+	\item {1cm} rotuj zpět o úhel z kroku 2
+	\item rotuj zpět souřadnice obdélníka o uložený úhel	
+	
+\end{enumerate}
 
 
 
@@ -415,7 +429,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 				\begin{itemize}
 					\item Přetížení 1
 						\begin{itemize}
-							\item \textbf{std::vector<QPointF> \&points} - vektor bodů, jež má být orotován
+							\item \textbf{std::vector$<$QPointF$>$ \&points} - vektor bodů, jež má být orotován
 							\item \textbf{double angle} - úhel, o který má rotace být provedena
  						\end{itemize}
 					
@@ -449,7 +463,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 
 	\item Metoda \textbf{jarvisScanCH}
 		\begin{itemize}
-			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Jarvis Scan. Jejím výstupním typem je \textbf{QPolygonF}.
+			\item Tato metoda slouží k výpočtu konvexní obálky pomocí algoritmu Jarvis Scan. Během výpočtu je ošetřována singularita existence kolineárních bodů v datasetu. Jejím výstupním typem je \textbf{QPolygonF}.
 			\item Vstup
 				\begin{itemize}
 					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
@@ -491,7 +505,7 @@ V třídě Algorithms jsou staticky implementovány algoritmy počítající kov
 			\item Pomocná metoda k výpočtu konvexní obálky metodou Quick Hull. Jejím výstupním typem je \textbf{void}.
 			\item Vstup
 				\begin{itemize}
-					\item \textbf{int s, e} - index počátečního a koncového bodu, ohraničující množinu bodů, pro které je počítána lokální procedura
+					\item \textbf{int s, e} - index počátečního a koncového bodu dělící přímky
 					\item \textbf{std::vector} $<$\textbf{QPointF}$>$ \&\textbf{points} - vektor bodů, kolem nichž má být vytvořená konvexní obálka.
 					\item \textbf{QPolygonF \&poly\_ch} - polygon obsahující body konvexní obálky
 				\end{itemize}
@@ -648,7 +662,27 @@ Třída sloužící pro vykreslení okna s nápovědou.
 \clearpage
 \section{Závěr}
 
-Aplikace byla vzhledem ke zpracování bonusů programována tak, že vstupní i výstupní data jsou typu float, při testování doby běhu algoritmů však bylo zjištěno, že při použití datového typu float je výpočet velmi VELMI pomalý, naopak při přepsání kódu do verze pracující s integrem byl výpočet výrazně rychlejší. Bohužel už ale byly vyřešeny bonusy za předpokladu, že vstupní data jsou typu float, a proto jsou nakonec odevzdávány dvě verze - float pro funkcionality aplikace pro menší množiny bodů a integer pro testování doby běhu algortimů.
+\subsection{Politování se a vysvětlení našeho problému}
+Aplikace od začátku implementovala body, polygony, linie atd. v typu float (QPointF, QPolygonF, QLineF), v tomto duchu byly psány i všechny algoritmy. Při testování bylo zjištěno, že výpočet takto implementovaných algoritmů trvá VELMI dlouho (v řádu stovek sekund). Proto bylo navrženo (dva dny před odevzdáním), že by bylo vhodné vyzkoušet, jak budou algoritmy rychle počítat při implementaci bodů, polygonů a linií v typu int (QPoint, QPolygon, QLine). Bylo zjištěno, že tato změna (aplikovaná pomocí programu grep (to jsme se jen chtěli pochlubit, že jsme to zmákli přepsat rychle)) algoritmy rapidně urychlí (do řádu sekund až sub-sekund). Z tohoto důvodu (a takové z časových důvodů, při testování pomalejší verze počítač zamrzá a člověk u toho musí pořád sedět a odklikávat "Wait", aby program nepadl) jsou uvedeny grafy z testování rychlejší verze. Kdyby všechny algoritmy po tomto přechodu fungovaly správně, ani bychom se neobtěžovali psát tak obsáhlý závěr, ale to by nebyla smůla, aby se to nerozbilo. Především myšlenka rotací tam a zpět u minimálního ohraničujícího obdélníku již nefunguje - orotované souřadnice se zaokrouhlí na celé číslo, při rotaci zpět se opět zaokrouhlí na celé číslo a problém je na světě. Dále je jakýmsi neidentifikovatelným způsovem rozbitý výpočet Jarvis Scan na kružnici (kód jsme změnili na kód stejný jako z hodiny, kód generování bodů na kružnici máme obdobný jako ostatní skupinky, ale i tak nefunguje úplně správně, neumíme určit problém (a moc nás to mrzí (skutečně, neironicky (to taky není ironie)))). Jelikož jsme strávili spousta hodin nad co nejoptimálnější implementací těchto algoritmů a samozřejmě jsme to celou dobu testovali pro málo bodů, kdy vše běží rychle, rozhodli jsme se odevzdat 2 verze kódu. Složky jsou pojmenované \texttt{src\_float} pro původní super vymazlenou verzi a \texttt{src\_int} pro testovací rozbitou verzi s tím, že si stojíme za super vymazlenou verzí \texttt{src\_float}, kde funguje vše, ale pro velké množství bodů v některých případech pomaleji (hlavně Jarvis Scan). Doufáme, že to takto bude v pořádku. Ještě bychom se rádi pochlubili šikovnou implementací vymazávání duplicitních bodů (nejprve jsme sortovali, a pak porovnávali následující body, uložili vždy poslední stejný, takto nemusíme použít vnořený cyklus a náročnost je lineární a ne kvadratická).
+
+\subsection{Návrhy na vylepšení}
+\begin{itemize}
+	\item Přizpůsobení vykreslených prvků při zvětšování/zmenšování okna
+	\item Úplné vynechání Jarvis Scanu
+	\item Lepší algoritmus na počítání minimálního ohraničujícího obdélníka, nejlépe takový, při kterém se nemusí rotovat celá množina bodů
+		\begin{itemize}
+			\item Krom šikovných algoritmů z prezentace by také šla využít analytická geometrie, tj. v podstatě stejný postup jaký jsme použili v našem programu, ale nerotovalo by se:
+				\begin{itemize}
+					\item V cyklu by se opět procházely všechny strany, ty by byly proloženy vždy přímkou p. 
+					\item Přímce p by se našel nejvzdálenější bod, vedla by se jím přímka q || p a přímka k kolmá na p a q.
+					\item Přímce k by se našel nejvzdálenější bod vlevo, jím by se vedla přímka kl kolmá na p a q.
+					\item Přímce k by se našel nejvdálenější bod vpravo, jím by se vedla přímka kp kolmá na p a q.
+					\item Našly by se průsečíky přímek p a kl, p a kp, q a kl, q a kp jako souřadnice rohů ohraničujícího obdélníku.
+					\item Dále by byl postup totožný s postupem v našem programu (testování velikosti obsahu ohraničujícího obdélníku).
+				\end{itemize}
+		\end{itemize}
+	\item Optimalizace velikosti vykreslovaných značek bodů vzhledem k počtu vykreslených bodů (tak aby byla lépe vidět konvexní obálka).
+\end{itemize}
 
 \clearpage
 \section{Zdroje}
