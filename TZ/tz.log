@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  23 NOV 2018 12:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.11.13)  24 NOV 2018 17:01
 entering extended mode
 **./tz.tex
 (tz.tex
@@ -782,7 +782,7 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
-<KO.png, id=154, 451.08525pt x 364.36125pt>
+<KO.png, id=158, 451.08525pt x 364.36125pt>
 File: KO.png Graphic file (type png)
 <use KO.png>
 Package pdftex.def Info: KO.png  used on input line 117.
@@ -804,7 +804,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--126
 [3
 
 ]
-<JS.jpg, id=179, 491.436pt x 361.95226pt>
+<JS.jpg, id=183, 491.436pt x 361.95226pt>
 File: JS.jpg Graphic file (type jpg)
 <use JS.jpg>
 Package pdftex.def Info: JS.jpg  used on input line 157.
@@ -821,7 +821,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--165
 ] [6
 
 ]
-<circle.jpg, id=225, 572.1375pt x 98.16675pt>
+<circle.jpg, id=229, 572.1375pt x 98.16675pt>
 File: circle.jpg Graphic file (type jpg)
 <use circle.jpg>
 Package pdftex.def Info: circle.jpg  used on input line 221.
@@ -838,261 +838,272 @@ Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                removing `\textasciicaron' on input line 252.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--273
-
- []
-
-<vstup_nastaveni.jpg, id=252, 491.436pt x 361.95226pt>
-File: vstup_nastaveni.jpg Graphic file (type jpg)
-<use vstup_nastaveni.jpg>
-Package pdftex.def Info: vstup_nastaveni.jpg  used on input line 281.
-(pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
-<vstup.jpg, id=253, 491.436pt x 361.95226pt>
-File: vstup.jpg Graphic file (type jpg)
-<use vstup.jpg>
-Package pdftex.def Info: vstup.jpg  used on input line 290.
-(pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 269.
 
 [9
 
- <./vstup_nastaveni.jpg>] [10 <./vstup.jpg>]
-<min_bound.jpg, id=269, 491.436pt x 361.95226pt>
+]
+Underfull \hbox (badness 10000) in paragraph at lines 283--286
+
+ []
+
+<vstup_nastaveni.jpg, id=267, 491.436pt x 361.95226pt>
+File: vstup_nastaveni.jpg Graphic file (type jpg)
+<use vstup_nastaveni.jpg>
+Package pdftex.def Info: vstup_nastaveni.jpg  used on input line 294.
+(pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
+<vstup.jpg, id=268, 491.436pt x 361.95226pt>
+File: vstup.jpg Graphic file (type jpg)
+<use vstup.jpg>
+Package pdftex.def Info: vstup.jpg  used on input line 303.
+(pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
+[10
+
+ <./vstup_nastaveni.jpg> <./vstup.jpg>] [11]
+<min_bound.jpg, id=279, 491.436pt x 361.95226pt>
 File: min_bound.jpg Graphic file (type jpg)
 <use min_bound.jpg>
-Package pdftex.def Info: min_bound.jpg  used on input line 303.
+Package pdftex.def Info: min_bound.jpg  used on input line 316.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
- [11
+ [12
 
  <./min_bound.jpg>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 310.
+(hyperref)                removing `\textasciicaron' on input line 323.
 
-<popis.jpg, id=275, 491.436pt x 361.95226pt>
+<popis.jpg, id=286, 491.436pt x 361.95226pt>
 File: popis.jpg Graphic file (type jpg)
 <use popis.jpg>
-Package pdftex.def Info: popis.jpg  used on input line 313.
+Package pdftex.def Info: popis.jpg  used on input line 326.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 317--319
+Underfull \hbox (badness 10000) in paragraph at lines 330--332
 
  []
 
-<help.jpg, id=276, 485.4135pt x 329.43076pt>
+<help.jpg, id=287, 485.4135pt x 329.43076pt>
 File: help.jpg Graphic file (type jpg)
 <use help.jpg>
-Package pdftex.def Info: help.jpg  used on input line 323.
+Package pdftex.def Info: help.jpg  used on input line 336.
 (pdftex.def)             Requested size: 284.52756pt x 193.09572pt.
-[12
+[13
 
  <./popis.jpg> <./help.jpg>]
 File: vstup_nastaveni.jpg Graphic file (type jpg)
 <use vstup_nastaveni.jpg>
-Package pdftex.def Info: vstup_nastaveni.jpg  used on input line 334.
+Package pdftex.def Info: vstup_nastaveni.jpg  used on input line 347.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
-<vystup.jpg, id=284, 491.436pt x 361.95226pt>
+<vystup.jpg, id=294, 491.436pt x 361.95226pt>
 File: vystup.jpg Graphic file (type jpg)
 <use vystup.jpg>
-Package pdftex.def Info: vystup.jpg  used on input line 344.
+Package pdftex.def Info: vystup.jpg  used on input line 357.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
 File: min_bound.jpg Graphic file (type jpg)
 <use min_bound.jpg>
-Package pdftex.def Info: min_bound.jpg  used on input line 355.
+Package pdftex.def Info: min_bound.jpg  used on input line 368.
 (pdftex.def)             Requested size: 284.52756pt x 209.56793pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 359--360
+Underfull \hbox (badness 10000) in paragraph at lines 372--373
 
  []
 
-[13
+[14
 
- <./vystup.jpg>] [14]
+ <./vystup.jpg>] [15]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 364.
+(hyperref)                removing `\textasciicaron' on input line 377.
 
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 364.
+(hyperref)                removing `\textring' on input line 377.
 
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 370.
+(hyperref)                removing `\textring' on input line 383.
 
-<random.jpg, id=296, 586.5915pt x 100.57574pt>
+<random.jpg, id=306, 586.5915pt x 100.57574pt>
 File: random.jpg Graphic file (type jpg)
 <use random.jpg>
-Package pdftex.def Info: random.jpg  used on input line 374.
+Package pdftex.def Info: random.jpg  used on input line 387.
 (pdftex.def)             Requested size: 426.79134pt x 73.17873pt.
-<g1_random.jpg, id=297, 475.7775pt x 254.75175pt>
+<g1_random.jpg, id=307, 475.7775pt x 254.75175pt>
 File: g1_random.jpg Graphic file (type jpg)
 <use g1_random.jpg>
-Package pdftex.def Info: g1_random.jpg  used on input line 381.
+Package pdftex.def Info: g1_random.jpg  used on input line 394.
 (pdftex.def)             Requested size: 341.43306pt x 182.82637pt.
-[15
+[16
 
  <./random.jpg> <./g1_random.jpg>]
-<g2_random.jpg, id=304, 472.164pt x 230.66174pt>
+<g2_random.jpg, id=314, 472.164pt x 230.66174pt>
 File: g2_random.jpg Graphic file (type jpg)
 <use g2_random.jpg>
-Package pdftex.def Info: g2_random.jpg  used on input line 389.
+Package pdftex.def Info: g2_random.jpg  used on input line 402.
 (pdftex.def)             Requested size: 341.43306pt x 166.79784pt.
 
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 393.
+(hyperref)                removing `\textring' on input line 406.
 
-<grid.jpg, id=305, 565.51276pt x 101.178pt>
+<grid.jpg, id=315, 565.51276pt x 101.178pt>
 File: grid.jpg Graphic file (type jpg)
 <use grid.jpg>
-Package pdftex.def Info: grid.jpg  used on input line 397.
+Package pdftex.def Info: grid.jpg  used on input line 410.
 (pdftex.def)             Requested size: 426.79134pt x 76.36034pt.
-<g1_grid.jpg, id=306, 467.346pt x 227.6505pt>
+<g1_grid.jpg, id=316, 467.346pt x 227.6505pt>
 File: g1_grid.jpg Graphic file (type jpg)
 <use g1_grid.jpg>
-Package pdftex.def Info: g1_grid.jpg  used on input line 404.
+Package pdftex.def Info: g1_grid.jpg  used on input line 417.
 (pdftex.def)             Requested size: 341.43306pt x 166.31548pt.
-[16
+[17
 
  <./g2_random.jpg> <./grid.jpg> <./g1_grid.jpg>]
-<g2_grid.jpg, id=314, 468.5505pt x 234.27525pt>
+<g2_grid.jpg, id=324, 468.5505pt x 234.27525pt>
 File: g2_grid.jpg Graphic file (type jpg)
 <use g2_grid.jpg>
-Package pdftex.def Info: g2_grid.jpg  used on input line 412.
+Package pdftex.def Info: g2_grid.jpg  used on input line 425.
 (pdftex.def)             Requested size: 341.43306pt x 170.7228pt.
 
 
 Package hyperref Warning: Composite letter `\textring+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textring' on input line 415.
+(hyperref)                removing `\textring' on input line 428.
 
 File: circle.jpg Graphic file (type jpg)
 <use circle.jpg>
-Package pdftex.def Info: circle.jpg  used on input line 420.
+Package pdftex.def Info: circle.jpg  used on input line 433.
 (pdftex.def)             Requested size: 426.79134pt x 73.22943pt.
-<g1_circle.jpg, id=315, 469.15276pt x 293.898pt>
+<g1_circle.jpg, id=325, 469.15276pt x 293.898pt>
 File: g1_circle.jpg Graphic file (type jpg)
 <use g1_circle.jpg>
-Package pdftex.def Info: g1_circle.jpg  used on input line 427.
+Package pdftex.def Info: g1_circle.jpg  used on input line 440.
 (pdftex.def)             Requested size: 341.43306pt x 213.89796pt.
-[17
+[18
 
  <./g2_grid.jpg> <./g1_circle.jpg>]
-<g2_circle.jpg, id=323, 466.74374pt x 269.20575pt>
+<g2_circle.jpg, id=334, 466.74374pt x 269.20575pt>
 File: g2_circle.jpg Graphic file (type jpg)
 <use g2_circle.jpg>
-Package pdftex.def Info: g2_circle.jpg  used on input line 435.
+Package pdftex.def Info: g2_circle.jpg  used on input line 448.
 (pdftex.def)             Requested size: 341.43306pt x 196.93755pt.
- [18
+ [19
 
- <./g2_circle.jpg>] [19
+ <./g2_circle.jpg>] [20
 
-] [20]
-Overfull \hbox (20.10316pt too wide) in paragraph at lines 580--581
+] [21]
+Overfull \hbox (20.10316pt too wide) in paragraph at lines 593--594
 []\OT1/cmr/m/n/12 Pomocna me-toda k vypoctu kon-vexn obalky me-to-dou Qui
 ck Hull. Jejm vystupnm
  []
 
-[21] [22]
-Overfull \hbox (17.7976pt too wide) in paragraph at lines 644--645
+[22] [23]
+Overfull \hbox (17.7976pt too wide) in paragraph at lines 657--658
 []\OT1/cmr/bx/n/12 QPolygonF rect \OT1/cmr/m/n/12 - po-ly-gon ob-sa-hujc bo
 dy mi-nimalnho ohranicujcho obdelnku 
  []
 
 
-Overfull \hbox (10.29562pt too wide) in paragraph at lines 650--651
+Overfull \hbox (10.29562pt too wide) in paragraph at lines 663--664
 \OT1/cmr/m/n/12 ohranicujcho obdelnka. Me-toda se vola po-moc me-tod
 y \OT1/cmr/bx/n/12 re-pa-int()\OT1/cmr/m/n/12 . Navratovym
  []
 
 
-Overfull \hbox (15.2079pt too wide) in paragraph at lines 681--682
+Overfull \hbox (15.2079pt too wide) in paragraph at lines 694--695
 []\OT1/cmr/m/n/12 Tato me-toda slouz pro za-volan al-go-ritmu pro vypoc
 te mi-nimalnho ohranicujcho
  []
 
 
-Overfull \hbox (11.52641pt too wide) in paragraph at lines 684--685
+Overfull \hbox (11.52641pt too wide) in paragraph at lines 697--698
 []\OT1/cmr/bx/n/12 bool draw[]dir[]line \OT1/cmr/m/n/12 - uzivatelsky na-sta-v
 eny in-dikator, zda-li se ma vypoctat
  []
 
-[23
+[24
 
-] [24]
-Overfull \hbox (6.65611pt too wide) in paragraph at lines 713--714
+] [25]
+Overfull \hbox (6.65611pt too wide) in paragraph at lines 726--727
 []\OT1/cmr/m/n/12 Metoda \OT1/cmr/bx/n/12 on[]createCHButton[]clicked \OT1/cmr/
 m/n/12 - re-a-guje na zmacknut tlactka pro vypocten
  []
 
 
-Overfull \hbox (13.82971pt too wide) in paragraph at lines 719--720
+Overfull \hbox (13.82971pt too wide) in paragraph at lines 732--733
 []\OT1/cmr/m/n/12 Metoda \OT1/cmr/bx/n/12 on[]createRectButton[]clicked \OT1/cm
 r/m/n/12 - re-a-guje na zmacknut tlactka pro vypocten
  []
 
 
-Overfull \hbox (10.21129pt too wide) in paragraph at lines 721--722
+Overfull \hbox (10.21129pt too wide) in paragraph at lines 734--735
 []\OT1/cmr/m/n/12 Metoda \OT1/cmr/bx/n/12 on[]helpButton[]clicked \OT1/cmr/m/n/
 12 - re-a-guje na zmacknut tlactka pro volan napovedy,
  []
-
-[25
-
-]
-
-Package hyperref Warning: Composite letter `\textasciicaron+r'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 731.
 
 [26
 
 ]
 
-Package hyperref Warning: Composite letter `\textasciicaron+e'
+Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 738.
-
-
-Package hyperref Warning: Composite letter `\textasciicaron+e'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 740.
+(hyperref)                removing `\textasciicaron' on input line 744.
 
 [27
 
-] [28]
-Underfull \hbox (badness 10000) in paragraph at lines 768--771
+]
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 751.
+
+
+Package hyperref Warning: Composite letter `\textasciicaron+e'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 753.
+
+[28
+
+] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 781--784
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 772.
-[29
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 785.
+[30
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 772.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 785.
  (tz.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 772.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 772.
-Package rerunfilecheck Info: File `tz.out' has not changed.
-(rerunfilecheck)             Checksum: 109CE4358BA74037E5EFEBC5D51ED187;2476.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 772.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 785.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 785.
+
+
+Package rerunfilecheck Warning: File `tz.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `tz.out':
+(rerunfilecheck)             Before: 1AE560A22EB25718936E945CD80D4267;2557
+(rerunfilecheck)             After:  1273FE1B9F4B5B212820EC96DB4C8E9C;2637.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 785.
  ) 
 Here is how much of TeX's memory you used:
- 10732 strings out of 492970
- 153960 string characters out of 3127037
+ 10737 strings out of 492970
+ 154023 string characters out of 3127037
  268314 words of memory out of 3000000
- 14274 multiletter control sequences out of 15000+200000
+ 14275 multiletter control sequences out of 15000+200000
  10271 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,7n,39p,1372b,625s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1108,9 +1119,9 @@ b><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmsy8.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmtt12.pfb><C:/Users/Anna/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/amsfonts/symbols/msam10.pfb>
-Output written on tz.pdf (30 pages, 1212491 bytes).
+Output written on tz.pdf (31 pages, 1214652 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
- 146 named destinations out of 1000 (max. 500000)
- 366 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 453 PDF objects out of 1000 (max. 8388607)
+ 150 named destinations out of 1000 (max. 500000)
+ 374 words of extra memory for PDF output out of 10000 (max. 10000000)
 
