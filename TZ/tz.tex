@@ -361,6 +361,81 @@ Vše je uvedeno do původního stavu (smazány body i vypočtené vyýsledky) kl
 \clearpage
 
 %=======================================================================================
+\section{Testování výpočetních dob algoritmů}
+V rámci této úlohy byly testovány výpočetní doby algoritmů pro vsutpní množim o počtu bodů 1 000 - 1 000 000 bodů. Pro každý interval a každý tvar vstupní množiny byl výpočet proveden 10x, následně byl určen průměr a rozptyl. \\
+Na základě těchto testování bylo zjištěno, že algoritmy Sweep Line a Quick Hull jsou univerzální výpočetní algoritmy konvexní obálky pro různé uspořádání množiny bodů a to i pro velké množiny bodů. Graham Scan je oproti nim vždy (kromě kružnice) o řád až dva pomalejší. Jarvis Scan s ostatními algoritmy snad ani nelze srovnávat – je vždy o několik řádů pomalejší. 
+Níže jsou uvedeny výsledné průměrné hodnoty a jejich grafy. Podrobnější záznam testování viz přílohu č. 1 "Testování".
+
+\vspace{1.5cm}
+\subsection {Rozložení bodů - random}
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{random.jpg}
+	\caption{Porovnání průměrné doby výpočtu - random}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{g1_random.jpg}
+	\caption{Graf porovnání průměrné doby výpočtu - random}
+\end{figure}
+\clearpage
+
+Pro vizuální porovnání algoritmů Quick hull, Sweep line a Graham scan byl vytvořen graf zvlášť.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{g2_random.jpg}
+	\caption{Graf porovnání průměrné doby výpočtu - random}
+\end{figure}
+
+\subsection {Rozložení bodů - grid}
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{grid.jpg}
+	\caption{Porovnání průměrné doby výpočtu - grid}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{g1_grid.jpg}
+	\caption{Graf porovnání průměrné doby výpočtu - grid}
+\end{figure}
+\clearpage
+
+Pro vizuální porovnání algoritmů Quick Hull a Sweep Line byl vytvořen graf zvlášť.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{g2_grid.jpg}
+	\caption{Graf porovnání průměrné doby výpočtu - grid}
+\end{figure}
+\subsection {Rozložení bodů - circle}
+
+% (OBRÁZEK)
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=15cm]{circle.jpg}
+	\caption{Porovnání průměrné doby výpočtu - circle}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{g1_circle.jpg}
+	\caption{Graf porovnání průměrné doby výpočtu - circle}
+\end{figure}
+\clearpage
+
+Pro vizuální porovnání algoritmů Quick Hull, Sweep Line a Graham scan byl vytvořen graf zvlášť.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{g2_circle.jpg}
+	\caption{Graf porovnání průměrné doby výpočtu - circle}
+\end{figure}
+\clearpage
 \section{Dokumentace}
 
 \subsection{Algorithms}
