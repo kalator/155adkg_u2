@@ -22,7 +22,7 @@
 
 
 
-\usepackage[OT2,OT1]{fontenc}
+%\usepackage[OT2,OT1]{fontenc}
 \newcommand\cyr
 {
 \renewcommand\rmdefault{wncyr}
@@ -272,14 +272,15 @@ Jak již bylo řečeno výše, striktně konvexní obálka na přímém segmentu
 \subsubsection{Implementace metody}
 \begin{enumerate}
 	
-	\item {for i = 0, i< n, i++ ..... n=}pocet bodu mnoziny p
-	\item \hspace{1.5cm} {a = -(p((i+1)\%n).y - p(i\%n).y)\\ 
-	\indent \hspace{1.5cm} b = p((i+1)\%n).x - p(i\%n).x }... slozky normaloveho vektoru primky,\\ 
-	\indent \hspace{1.5cm} resp. koeficienty a, b obecne rovnice primky ax+by+c=0
-	\item \hspace{1.5cm} c = - a * p(i\%n).x - b * p(i\%n).y ... koeficient c obecne rovnice primky
-	\item \hspace{1.5cm} if(a*p((i+2)\%n).x + b*p((i+2)\%n).y +c = 0):
-	\item \hspace{2.5cm}erase p((i+1)\%n)
-	\item \hspace{2.5cm}i - - , n - -	
+	\item for $i = 0, i< n, i++$ //n = p.size
+	\item \hspace{1.5cm} $a = -(p_{(i+1)\%n}.y - p_{i\%n}.y)$\\ 
+	\indent \hspace{1.5cm} $b = p_{(i+1)\%n}.x - p_{i\%n}.x$ \\
+	\indent \hspace{1.5cm}//složky normálového vektoru přímky,\\ 
+	\indent \hspace{1.5cm} resp. koeficienty a, b obecné rovnice přímky $ax+by+c = 0$
+	\item \hspace{1.5cm} $c = - a \cdot p_{i\%n}.x - b \cdot p_{i\%n}.y$ //koeficient c obecné rovnice přímky
+	\item \hspace{1.5cm} if $a\cdot p_{(i+2)\%n}.x + b \cdot p_{(i+2)\%n}.y +c == 0)$: 
+	\item \hspace{2.5cm}erase $p_{(i+1)\%n}$
+	\item \hspace{2.5cm}$i -- , n --	$
 	
 \end{enumerate}
 
