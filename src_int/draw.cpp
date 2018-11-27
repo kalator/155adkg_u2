@@ -12,7 +12,7 @@ void Draw::paintEvent(QPaintEvent *e)
     QPen pen_rect(QColor(0, 255, 0, 127), 6, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_direction(QColor(0, 0, 255, 127), 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen_point(Qt::black, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    //QPen pen_point_ch(Qt::red, 3);
+    QPen pen_point_ch(Qt::blue, 6);
 
     QPainter painter(this);
 
@@ -30,6 +30,13 @@ void Draw::paintEvent(QPaintEvent *e)
     //Draw convex hull
     painter.setPen(pen_poly);
     painter.drawPolygon(this->ch);
+
+    //Draw points of convex hull
+    painter.setPen(pen_point_ch);
+    for(int i = 0; i < this->ch.size(); i++)
+    {
+        painter.drawPoint(this->ch[i]);
+    }
 
     //Draw main direction
     painter.setPen(pen_direction);

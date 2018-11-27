@@ -86,7 +86,6 @@ QPolygon Algorithms::jarvisScanCH(std::vector<QPoint> &points)
     //pushing pivot into poly_ch
     poly_ch.push_back(q);
     //loop
-    int h = 0;
     do
     {
         int i_max = -1;

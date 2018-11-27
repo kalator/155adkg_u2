@@ -43,12 +43,13 @@ void Widget::on_clearButton_clicked()
     ui->canvas->clearCanvas();
 }
 
+/*
 void Widget::on_createRectButton_clicked()
 {
     //set minimal bounding rectangle and if checked, also main direction line
     ui->canvas->setRect(ui->checkBox->isChecked());
 }
-
+*/
 void Widget::on_helpButton_clicked()
 {
     //show help
