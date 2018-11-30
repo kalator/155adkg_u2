@@ -83,15 +83,11 @@ Anna Zemánková \\
 %\newpage
 
 \section{Zadání}
-Navrhněte aplikaci s grafickým rozhraním, která určí a vizualizuje konvexní obálku množiny bodů.
-Pro výpočet konvexní obálky použijte algoritmy Jarvis Scan, Quick Hull a Sweep Line.\\
 
-Pro testování algoritmů užijte rozložení bodů: \\
-1) náhodné\\
-2) mřížka\\
-3) kružnice\\ 
+\begin{figure}[h!]
+	\includegraphics[clip, trim=0cm 5cm 0cm 3cm, width=1.0\textwidth]{zadani.pdf}
+\end{figure}
 
-\vspace{5cm}
 
 \section{Údaje o bonusových úlohách}
 V rámci této úlohy byly zpracovány všechny bonusy kromě generování star-shaped množiny bodů.\\
@@ -213,12 +209,12 @@ V globální proceduře je z množiny $S$ nalezen počáteční $p_s$ ($x_min$) 
 \clearpage
 
 \subsubsection{Prolematické situace}
-Problematická situace při využití algotimu Quick Hull nastává v okamžiku, kdy je vstupní množina uspořádána do kružnice. Spojnice počátečního $p_s$ a koncového bodu $p_e$ je pak vždy sečna kružnice -> existuje další bod v pravé polorovině dokud do konvexní obálky nejsou zařazeny všechny body a rekurze bude volána pro každý bod vstupní množiny. V obrázku níže jsou naznačeny první tři kroky, odlišené barvami.
+Problematická situace při využití algoritmu Quick Hull nastává v okamžiku, kdy je vstupní množina uspořádána do kružnice. Spojnice počátečního $p_s$ a koncového bodu $p_e$ je pak vždy sečna kružnice -> existuje další bod v pravé polorovině, dokud do konvexní obálky nejsou zařazeny všechny body, a rekurze bude volána pro každý bod vstupní množiny. V obrázku níže jsou naznačeny první tři kroky, odlišené barvami.
 
 % (OBRÁZEK)
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{circle.jpg}
+	\includegraphics[width=10cm]{QH_kruznice.png}
 	\caption{Quick Hull - kružnice}
 \end{figure}
 \clearpage
@@ -788,6 +784,9 @@ Dále je jakýmsi neidentifikovatelným způsobem rozbitý výpočet Jarvis Scan
 \begin{enumerate}
 \item  BAYER, Tomáš. Konvexní obálky [online][cit. 21.10.2018]. \\
 Dostupné z: https://web.natur.cuni.cz/~bayertom/images/courses/Adk/adk4.pdf  \\
+
+\item  BAYER, Tomáš. Konvexní obálky [online][cit. 30.11.2018]. \\
+Dostupné z: https://web.natur.cuni.cz/~bayertom/images/courses/Adk/adkcv2.pdf\\
 %=======================================================================================
 \end{enumerate}
 \end{document}
